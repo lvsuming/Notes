@@ -137,7 +137,7 @@ function computedBeginDependencyDetectionCallback(subscribable, id) {
         }
         // If the observable we've accessed has a pending notification, ensure we get notified of the actual final value (bypass equality checks)
         if (subscribable._notificationIsPending) {
-            subscribable._notifyNextChange = true;
+            subscribable._notifyNextChangeIfValueIsDifferent();
         }
     }
 }
@@ -327,10 +327,11 @@ var computedFn = {
             state.isStale = false;
         }
     },
-    peek: function () {
-        // Peek won't re-evaluate, except while the computed is sleeping or to get the initial value when "deferEvaluation" is set.
+    peek: function (evaluate) {
+        // By default, peek won't re-evaluate, except while the computed is sleeping or to get the initial value when "deferEvaluation" is set.
+        // Pass in true to evaluate if needed.
         var state = this[computedState];
-        if ((state.isStale && !state.dependenciesCount) || (state.isSleeping && this.haveDependenciesChanged())) {
+        if ((state.isStale && (evaluate || !state.dependenciesCount)) || (state.isSleeping && this.haveDependenciesChanged())) {
             this.evaluateImmediate();
         }
         return state.latestValue;
