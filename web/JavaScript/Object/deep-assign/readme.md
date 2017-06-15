@@ -32,4 +32,4 @@ Recursively assigns own enumerable properties of `source` objects to the `target
 
 ## License
 
-MIT © [Sindre Sorhus](http://lvsuming.xyz)
+MIT © [lvsuming](http://lvsuming.xyz)
