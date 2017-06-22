@@ -49,6 +49,8 @@ class ProvinceCityDistrict extends React.Component{
                     return state;
                 });
                 break;
+            default:
+                break;
         }
     }
     render () {

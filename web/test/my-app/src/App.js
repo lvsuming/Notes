@@ -1,8 +1,7 @@
 import React from 'react'; //, { Component }
 //import ReactDOM from 'react-dom';
 //import logo from './logo.svg';
-import './App.css';
-
+//import './App.css';
 /*
 class App extends Component {
   render() {
@@ -128,7 +127,7 @@ class App extends React.Component{
 }
 export default App;
 */
-/*
+
 class App extends React.Component{
     constructor(props){
         super(props);
@@ -140,7 +139,7 @@ class App extends React.Component{
     }
     handleChange (name,event){
         var newState={};
-        newState[name] = name=="isEmergency"?event.target.checked:event.target.value;
+        newState[name] = name==="isEmergency"?event.target.checked:event.target.value;
         this.setState(newState);
     }
     submitHandler (e) {
@@ -161,23 +160,6 @@ class App extends React.Component{
             <input type="checkbox" value="是否同意" checked={this.state.isEmergency} onChange={this.handleChange.bind(this,"isEmergency")} id="isEmergency"/>
             <button type="submit">提交</button>
         </form>
-    }
-}
-export default App;
-*/
-
-class App extends React.Component{
-    constructor(props){
-        super();
-        var arr = [{'name':'北京','sub':{'name':'北京市'}},{'name':'天津','sub':{'name':'天津'}},{'name':'山西','sub':{'name':'太原','name':'大同','name':'阳泉'}}];
-        this.state = {
-            province:'北京'
-        }
-    }
-    render(){
-        return <div>
-            {this.state.province}
-        </div>
     }
 }
 export default App;
