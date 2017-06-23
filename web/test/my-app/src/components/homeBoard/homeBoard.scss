@@ -2,19 +2,19 @@
   height:120px;
   line-height:120px;
   font-size: 1.8rem;
-}
-.home-board .todolist,.home-board .myprocess{
+
+.todolist,.myprocess{
   display:inline-block;
   text-align:right;
   padding-left:4.5rem;
 }
-.home-board .todolist{
-  background: url("/public/images/icon-todolist.png") no-repeat 0 center / 28%;
+.todolist{
+  background: url("/images/icon-todolist.png") no-repeat 0 center / 28%;
 }
-.home-board .myprocess{
-  background: url("/public/images/icon-myprocess.png") no-repeat 0 center / 28%;
+.myprocess{
+  background: url("/images/icon-myprocess.png") no-repeat 0 center / 28%;
 }
-.home-board .num{
+.num{
   position: absolute;
   width: 2rem;
   height: 2rem;
@@ -29,4 +29,5 @@
   word-break: break-all;
   white-space: nowrap;
   border: 2px solid white;
+}
 }

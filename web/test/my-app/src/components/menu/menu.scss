@@ -1,0 +1,74 @@
+.home-menu li{
+  font-size: 1.75rem;
+  line-height: 14rem;
+  height: 9.375rem;
+  background-repeat: no-repeat;
+  background-position: center 2rem;
+  background-size: 20%;
+  .grid-4{
+    background-size: 25%;
+  }
+}
+@media screen and (min-width: 1048px) {
+  .home-menu li {
+    line-height: 20rem;
+    height: 12rem;
+  }
+}
+.home-menu-leave{
+  background-image: url("/images/icon-leave.png");
+}
+.home-menu-evection{
+  background-image: url("/images/icon-evection.png");
+}
+.home-menu-meeting{
+  background-image: url("/images/icon-meeting.png");
+}
+.home-menu-salary{
+  background-image: url("/images/icon-salary.png");
+}
+.home-menu-process{
+  background-image: url("/images/icon-initiate-process.png");
+}
+.home-menu-allapp{
+  background-image: url("/images/icon-allapp.png");
+}
+.home-menu-docquery{
+  background-image: url("/images/icon-docquery.png");
+}
+.home-menu-resourceborrow{
+  background-image: url("/images/icon-resourceborrow.png");
+}
+.home-menu-officesupplies{
+  background-image: url("/images/icon-officesupplies.png");
+}
+.home-menu-feeexpense{
+  background-image: url("/images/icon-feeexpense.png");
+}
+.home-menu-businessexpense{
+  background-image: url("/images/icon-businessexpense.png");
+}
+.home-menu-contractpayment{
+  background-image: url("/images/icon-contractpayment.png");
+}
+.home-menu-loanapplication{
+  background-image: url("/images/icon-loanapplication.png");
+}
+.home-menu-repayapplication{
+  background-image: url("/images/icon-repayapplication.png");
+}
+.home-menu-todolist{
+  background-image: url("/images/icon-todolist.png");
+}
+.home-menu-agendamanage{
+  background-image: url("/images/icon-agendamanage.png");
+}
+.home-menu-investmanage{
+  background-image: url("/images/icon-investmanage.png");
+}
+.home-menu-knowledgecenter{
+  background-image: url("/images/icon-knowledgecenter.png");
+}
+.home-menu-regulation{
+  background-image: url("/images/icon-regulation.png");
+}

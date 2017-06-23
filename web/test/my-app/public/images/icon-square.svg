@@ -1,0 +1,19 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" 
+"http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+
+<svg width="100%" height="100%" version="1.1"
+xmlns="http://www.w3.org/2000/svg">
+	<rect width="45" height="60" style="fill:rgb(255,255,255);stroke-width:1;fill-opacity:0;stroke:#33BDE2"/>
+</svg>
+
+<!--
+<svg width="700" height="660">
+  <defs>
+    <pattern id="image" x="0" y="0" patternUnits="userSpaceOnUse" height="1" width="1">
+      <rect width="45" height="60" style="fill:rgb(255,255,255);stroke-width:1;fill-opacity:0;stroke:#33BDE2"/>
+    </pattern>
+  </defs>
+  <circle id='top' cx="180" cy="120" r="80" fill="url(#image)"/>
+</svg>
+-->
