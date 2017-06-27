@@ -1,0 +1,57 @@
+.flew-status {
+  border-style: solid;
+  border-width: 1px;
+  font-size: 1.6rem;
+  padding: .2rem .4rem;
+  margin-left: 1rem; }
+  .flew-status .noapprove {
+    color: orange;
+    border-color: orange; }
+  .flew-status .hasapprove {
+    color: blue;
+    border-color: blue; }
+  .flew-status .rejected {
+    color: red;
+    border-color: red; }
+  .flew-status .discarded {
+    color: #ccc;
+    border-color: #ccc; }
+
+#switchTab {
+  border-bottom: 1px solid #e5e5e5;
+  background-color: #FFF; }
+  #switchTab .line li:not(:last-of-type) {
+    border-right: 1px solid #5278AC;
+    margin-right: -1px; }
+  #switchTab li {
+    height: 3rem;
+    line-height: 3rem;
+    position: relative;
+    margin: 0 0 -1px;
+    float: left;
+    white-space: nowrap;
+    color: #5278AC;
+    font-size: 1.75rem; }
+  #switchTab .icon li {
+    width: 14%;
+    padding-left: 11%; }
+  #switchTab .line li:first-of-type {
+    background: url("/images/icon-list-agree.png") no-repeat 2rem center/20%; }
+  #switchTab .line li:nth-of-type(2) {
+    background: url("/images/icon-list-reject.png") no-repeat 2rem center/20%; }
+  #switchTab .line li:nth-of-type(3) {
+    background: url("/images/icon-list-forward.png") no-repeat 2rem center/20%; }
+  #switchTab .line li:last-of-type {
+    background: url("/images/icon-list-abandon.png") no-repeat 2rem center/20%; }
+  @media screen and (max-width: 639px) {
+    #switchTab li {
+      font-size: .8rem; } }
+  #switchTab li.selected {
+    color: #5f97f4; }
+  #switchTab li.selected:after {
+    content: "";
+    width: 80%;
+    height: 1.4rem;
+    margin: 0 10%;
+    float: left;
+    border-bottom: 2px solid #5f97f4; }

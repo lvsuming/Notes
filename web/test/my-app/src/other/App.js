@@ -1,4 +1,5 @@
 import React from 'react'; //, { Component }
+import PropTypes from 'prop-types';
 //import ReactDOM from 'react-dom';
 //import logo from './logo.svg';
 //import './App.css';
@@ -49,7 +50,7 @@ ReactDOM.render(
 /*
 const App = React.createClass({
     propTypes: {
-        name: React.PropTypes.string
+        name: PropTypes.string
     },
     getDefaultProps() {
         return {

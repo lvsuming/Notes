@@ -1,10 +1,15 @@
 import React from 'react';
-import {Link,browserHistory,History} from 'react-router';
+import {Link} from 'react-router';
+import PropTypes from 'prop-types';
 class menuItem extends React.Component{
+    static propTypes = {
+        name: PropTypes.string
+    };
     render(){
-        return <div><Link to="{this.props.link}" >
-            <li className="grid-3 fl home-menu-leave">{this.props.name}</li>
-        </Link></div>
+        let sClassName ="grid-3 fl home-menu-"+this.props.moduleName;
+        return <Link to={this.props.link} >
+            <li className={sClassName}>{this.props.name}</li>
+        </Link>
     }
 }
 export default menuItem;
