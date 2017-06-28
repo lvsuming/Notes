@@ -9,10 +9,6 @@ class TabsControl extends React.Component{
             module : this.name==='myFlow'?<SwitchContent currentIndex='0'/>:<SwitchContent currentIndex='0'/>,
             dataList : [{'name':'xxx','status':'待审','time':'2017-06-21'},{'name':'abc','status':'待审','time':'2017-06-22'}]
         };
-        this.getList = function(){
-            let currentIndex = this.currentIndex || 0;
-            this.state.dataList = [{'name':'xxx','status':'待审','time':'2017-06-21'},{'name':'abc','status':'待审','time':'2017-06-22'},{'name':'ddd','status':'已审','time':'2017-06-20'}];
-        }
     }
 
     check_tittle_index(index){
@@ -23,9 +19,16 @@ class TabsControl extends React.Component{
         return index===this.state.currentIndex ? "Tab_item" : "Tab_item hide";
     }
 
-    componentDidMount = function() {
+    componentWillMount = function() {
         this.getList();
     };
+
+    getList(index){
+        this.setState({
+            'currentIndex' : index || 0,
+            'dataList' : [{'name':'xxx'+index,'status':'待审','time':'2017-06-21'},{'name':'abc','status':'待审','time':'2017-06-22'},{'name':'ddd','status':'已审','time':'2017-06-20'}]
+        })
+    }
 
     render(){
         return(
@@ -34,7 +37,7 @@ class TabsControl extends React.Component{
                 <ul id="switchTab" className="row clr">
                     { React.Children.map( this.props.children , (element,index) => {
                         return(
-                            <li onClick={ () => { this.setState({currentIndex : index}) } } key={index} className={'grid-3 align-center'+this.check_tittle_index(index) } name={element.props.name}>{ element.props.title }</li>
+                            <li onClick={ () => { this.getList(index)} } key={index} className={'grid-3 align-center'+this.check_tittle_index(index) } name={element.props.name}>{ element.props.title }</li>
                         );
                     }) }
                 </ul>
@@ -49,7 +52,6 @@ class TabsControl extends React.Component{
                                         <SwitchContent currentIndex='0' key={index} name={item.name} status={item.status} time={item.time}/>
                                     )
                                 })}
-                                {this.state.module}
                             </article>
                         );
                     })}
