@@ -6,9 +6,6 @@ class Module extends React.Component{
         status: PropTypes.string,
         time: PropTypes.string
     };
-    constructor(props){
-        super(props);
-    }
     render(){
         return <li className="row select_bg" data-fdid="">
                 <span id="flew-name">{this.props.name}</span>

@@ -1,0 +1,25 @@
+.home-news{
+  li{
+    padding: 2rem;
+    border-bottom:1px solid #ddd;
+  }
+  .more{
+    margin-top: 1rem;
+    font-size: 1.8rem;
+  }
+  .title{
+    height: 3rem;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+  .more .tip{
+    padding: .3rem .8rem;
+    border-style: solid;
+    border-width: 1px;
+    font-size: 1.5rem;
+  }
+  .more .view:after{
+    content:'浏览';
+  }
+}

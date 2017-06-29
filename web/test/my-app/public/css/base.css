@@ -435,3 +435,8 @@ font
   padding: 1.6rem;
   background: #fff;
   text-align: left; }
+
+.noticebar {
+  height: 20px;
+  line-height: 20px;
+  padding-left: 20px; }

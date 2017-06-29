@@ -8,7 +8,9 @@ class IndexPage extends React.Component{
         return <div>
             <Slide/>
             <HomeBoard/>
+            <div className="noticebar"></div>
             <Menu/>
+            <div className="noticebar"></div>
             <HomeFlow/>
                 {this.props.children} {/*子模块*/}
         </div>
