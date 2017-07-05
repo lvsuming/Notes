@@ -1,6 +1,6 @@
 function getUrl() {
-    var _getHost = window.location.protocol+ '//' + window.location.host + (window.location.hostname==='yun.szcaremore.com') ? '/ekp' : '',
-        _baseUrl = 'http://yun.szcaremore.com:8887/ekp/bilf/mobile';//(window.location.hostname==='yun.szcaremore.com') ? _getHost+'/bilf/mobile' : '/bilf/mobile';
+    var _getHost = window.location.protocol+ '//' + window.location.host + (window.location.hostname==='yun.szcaremore.com' ? '/ekp' : ''),
+        _baseUrl = (window.location.hostname==='yun.szcaremore.com') ? _getHost+'/bilf/mobile' : 'http://yun.szcaremore.com:8887/ekp/bilf/mobile'; //'http://yun.szcaremore.com:8887/ekp/bilf/mobile';//
     return {
         jsapiSignature : _baseUrl+'/bilf_mobile_doc/bilfMobileDoc.do?method=jsapiSignature',                           //微信鉴权
         getCurUserInfo : _baseUrl+'/person/bilf_mobile_person/bilfMobilePerson.do?method=getCurUserInfo',              //当前用户信息

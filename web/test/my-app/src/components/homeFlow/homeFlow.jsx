@@ -45,7 +45,7 @@ class Module extends React.Component{
             method : "GET"
         }).then(function (res) {
             if (res.ok) {
-                alert("Perfect! Your settings are saved.");
+                console.log(JSON.stringify(res));
             } else if (res.status === 401) {
                 alert("Oops! You are not authorized.");
             }

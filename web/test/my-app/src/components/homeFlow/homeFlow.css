@@ -1,0 +1,23 @@
+@charset "UTF-8";
+.home-news li {
+  padding: 2rem;
+  border-bottom: 1px solid #ddd; }
+
+.home-news .more {
+  margin-top: 1rem;
+  font-size: 1.8rem; }
+
+.home-news .title {
+  height: 3rem;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap; }
+
+.home-news .more .tip {
+  padding: .3rem .8rem;
+  border-style: solid;
+  border-width: 1px;
+  font-size: 1.5rem; }
+
+.home-news .more .view:after {
+  content: '浏览'; }

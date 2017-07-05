@@ -43,16 +43,16 @@
     padding-left: 11%;
   }
   .line li:first-of-type{
-    background: url("/images/icon-list-agree.png") no-repeat 2rem center / 20%;
+    background: url("%PUBLIC_URL%/images/icon-list-agree.png") no-repeat 2rem center / 20%;
   }
   .line li:nth-of-type(2){
-    background: url("/images/icon-list-reject.png") no-repeat 2rem center / 20%;
+    background: url("%PUBLIC_URL%/images/icon-list-reject.png") no-repeat 2rem center / 20%;
   }
   .line li:nth-of-type(3){
-    background: url("/images/icon-list-forward.png") no-repeat 2rem center / 20%;
+    background: url("%PUBLIC_URL%/images/icon-list-forward.png") no-repeat 2rem center / 20%;
   }
   .line li:last-of-type{
-    background: url("/images/icon-list-abandon.png") no-repeat 2rem center / 20%;
+    background: url("%PUBLIC_URL%/images/icon-list-abandon.png") no-repeat 2rem center / 20%;
   }
   @media screen and (max-width:639px){
      li{
