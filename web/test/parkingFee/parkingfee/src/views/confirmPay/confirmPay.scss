@@ -1,0 +1,23 @@
+@import '../index.scss';
+.feeDetails{
+  height: 100%;
+  margin: 5px;
+  box-sizing: border-box;
+  padding: 2rem 1.5rem;
+  background: url('./images/bg-feeDetails.png') no-repeat top center / 100%;
+  .carNo{
+    margin: 0 0 5px 0;
+    color:$green;
+  }
+
+  .carInfo{
+    padding: 20px 0;
+    clear: both;
+    height: 60px;
+
+    dl{float:left;width: 100%;}
+    dt,dd{float: left;}
+    dt{width: 30%}
+    dd{width: 70%}
+  }
+}

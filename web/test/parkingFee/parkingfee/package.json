@@ -1,0 +1,24 @@
+{
+  "name": "parkingfee",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "react": "^15.6.1",
+    "react-dom": "^15.6.1",
+    "react-router": "^2.0.1",
+    "react-weui": "^1.0.3",
+    "weui": "^1.1.0"
+  },
+  "devDependencies": {
+    "node-sass": "^4.5.3",
+    "react-scripts": "1.0.10"
+  },
+  "scripts": {
+    "build-css": "node-sass src/ -o src/",
+    "watch-css": "npm run build-css && node-sass src/ -o src/ --watch",
+    "start": "npm run build-css && react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  }
+}

@@ -2,8 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import HomeFlowItem from './homeFlowItem.jsx';
 import base from '../base';
-//import 'whatwg-fetch';
-//import 'es6-promise';
 class Module extends React.Component{
     static propTypes = {
         docSubject: PropTypes.string,
@@ -62,6 +60,7 @@ class Module extends React.Component{
             console.error("Error submitting form!");
         });
     }
+
     componentDidMount(){
         this.getList();
     };

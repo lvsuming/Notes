@@ -1,0 +1,56 @@
+@import '../index.scss';
+.dialog {
+
+  $gray : #ddd;
+
+  .shade{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 1;
+    background-color: rgba(0, 0, 0, .5);
+  }
+
+  .selector{
+    width: 300px;
+    position: fixed;
+    top: 50%;
+    margin-top: -150px;
+    left: 50%;
+    margin-left: -150px;
+    background-color: #fff;
+    border-radius: .5rem;
+    z-index: 100;
+  }
+
+  ul{
+    margin: -5px;
+    float: left;
+    padding: 20px;
+  }
+  li{
+    width: 35px;
+    height: 35px;
+    line-height: 35px;
+    margin:5px;
+    text-align:center;
+    background-color: $gray;
+    float:left;
+  }
+  li.selected{
+    color:#fff;
+    background-color:$green;
+  }
+  .title{
+    margin-top: 20px;
+    color: #262626;
+  }
+  .btn {
+    width:100%;
+    padding: 10px 0;
+    border-top: 1px solid $gray;
+    color:$green;
+  }
+}
