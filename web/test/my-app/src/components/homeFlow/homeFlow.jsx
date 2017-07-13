@@ -1,7 +1,9 @@
 import React from 'react';
+import base from '../base';
+import common from '../common';
 import PropTypes from 'prop-types';
 import HomeFlowItem from './homeFlowItem.jsx';
-import base from '../base';
+//import myFlowListJSON from '../json/myFlowList.json'; ///public
 class Module extends React.Component{
     static propTypes = {
         docSubject: PropTypes.string,
@@ -18,32 +20,18 @@ class Module extends React.Component{
             rowsize : 5
         }
     }
+
     getList(){
         var _this = this;
+        /*
         var body = 'type=all&pagenum='+this.state.pagenum+'&rowsize='+this.state.rowsize;
-        /*var para = {
-            'type':'all',
-            'pagenum':this.state.pagenum,
-            'rowsize':this.state.rowsize
-        };*/
-        /*var response = new Response(
-            JSON.stringify(para),
-            {status: 200}
-        );*/
-
-        /*var req = new Request(base.getUrl.getMyFlowList, {method: 'GET', body:body});
-        fetch(req).then(function(response) {
-            console.log(response.json());
-        }).then(function(json) {
-            console.log(json);
-        });*/
-        /*let formData = new FormData();
-        formData.append('type', 'all');
-        formData.append('pagenum', this.state.pagenum);
-        formData.append('rowsize', this.state.rowsize);*/
-        fetch( base.getUrl.getMyFlowList+'&'+body , {
+        var headers = new Headers();
+        var url = base.getUrl.getMyFlowList;
+        headers.append('Content-Type', 'application/json');
+        fetch( url+'&'+body, {
             method : "GET",
-            credentials: 'include'
+            //credentials: 'include'
+            headers : headers
         }).then(function (res) {
             if (res.ok) {
                 res.json().then(function (resultData) {
@@ -59,6 +47,10 @@ class Module extends React.Component{
         }, function (e) {
             console.error("Error submitting form!");
         });
+        */
+        //_this.setState(
+        //    {'dataList': myFlowListJSON}
+        //);
     }
 
     componentDidMount(){

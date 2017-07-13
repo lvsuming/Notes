@@ -19,10 +19,10 @@ class HomeBoard extends React.Component{
                     }
                 });
             } else {
-                alert("Oops! You are not authorized.");
+                console.log("Oops! You are not authorized.");
             }
         }, function (e) {
-            alert("Error submitting form!");
+            console.log("Error submitting form!");
         });
     }
     getMyprocessNum(){
@@ -41,10 +41,10 @@ class HomeBoard extends React.Component{
                     }
                 });
             } else {
-                alert("Oops! You are not authorized.");
+                console.log("Oops! You are not authorized.");
             }
         }, function (e) {
-            alert("Error submitting form!");
+            console.log("Error submitting form!");
         });
     }
     componentDidMount(){
@@ -53,7 +53,7 @@ class HomeBoard extends React.Component{
     };
     render(){
         return <ul className="home-board bg-white align-center">
-            <a href='/sys/notify/mobile/index.jsp'>
+            <a href='/'>
                 <li className="grid-2 fl">
                     <div className="todolist"><div className="num hide">{this.props.myTodoNum || 0}</div>待办事宜</div>
                 </li>
