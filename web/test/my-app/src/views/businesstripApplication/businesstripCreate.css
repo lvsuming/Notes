@@ -1,0 +1,93 @@
+@charset "UTF-8";
+.icon-switch {
+  width: 5rem;
+  height: 4rem;
+  margin: -.75rem 0;
+  background: url("./images/switch-off.png") no-repeat center/100%; }
+
+.icon-switch.selected {
+  width: 5rem;
+  background: url("./images/switch-on.png") no-repeat center/100%; }
+
+.addJourney, .addHotel {
+  color: orange;
+  text-align: center; }
+
+.addJourney:before, .addHotel:before {
+  content: '+';
+  margin-right: 1rem; }
+
+.addJourney:after {
+  content: '增加行程单'; }
+
+.addHotel:after {
+  content: '增加酒店行程单'; }
+
+.icon-del {
+  width: 2.5rem;
+  height: 2.4rem;
+  border: 1.5rem solid #fff;
+  margin: -1.5rem;
+  background: url("./images/icon-del.png") no-repeat center/100%;
+  cursor: pointer; }
+
+.icon-tip-business:after {
+  content: '';
+  width: 2.5rem;
+  height: 2.5rem;
+  float: right;
+  margin-left: 1rem;
+  background: url("./images/icon-tip-business.png") no-repeat center/100%; }
+
+.btn-xiecheng {
+  width: 8rem;
+  height: 4rem;
+  border: 2px solid #5278AC;
+  float: left;
+  margin: .5rem 1rem .5rem 0;
+  text-align: center;
+  line-height: 4rem;
+  border-radius: 4rem;
+  color: #5278AC; }
+
+.business-status {
+  width: 152px;
+  height: 120px;
+  position: relative;
+  right: -36rem;
+  top: -23rem; }
+
+.status-0 {
+  background: url("./images/icon-businessstatus-0.png") no-repeat center/100%; }
+
+.status-1 {
+  background: url("./images/icon-businessstatus-1.png") no-repeat center/100%; }
+
+.status-2 {
+  background: url("./images/icon-businessstatus-2.png") no-repeat center/100%; }
+
+.businessstep dl {
+  border-left: 1px solid #5077ab;
+  padding: 0 0 1rem 2rem;
+  margin-left: 1rem;
+  width: calc(100% - 3rem); }
+
+.businessstep dl.reject {
+  border-color: red; }
+
+.businessstep .step-0:before, .businessstep .step-1:before, .businessstep .step-2:before {
+  content: '';
+  background: url("../img/icon-step-points.png") no-repeat #fff;
+  width: 2rem;
+  height: 3rem;
+  float: left;
+  margin: 0 0 0 -3rem; }
+
+.businessstep .step-0:before {
+  background-position: 0 12px; }
+
+.businessstep .step-1:before {
+  background-position: 0 -22px; }
+
+.businessstep .step-2:before {
+  background-position: 0 -60px; }

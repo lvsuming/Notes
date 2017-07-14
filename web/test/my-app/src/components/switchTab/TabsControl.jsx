@@ -26,7 +26,7 @@ class TabsControl extends React.Component{
     getList(index){
         this.setState({
             'currentIndex' : index || 0,
-            'dataList' : [{'name':'xxx'+index,'status':'待审','time':'2017-06-21'},{'name':'abc','status':'待审','time':'2017-06-22'},{'name':'ddd','status':'已审','time':'2017-06-20'}]
+            'dataList' : [{'name':'xxx'+(index||0),'status':'待审','time':'2017-06-21'},{'name':'abc','status':'待审','time':'2017-06-22'},{'name':'ddd','status':'已审','time':'2017-06-20'}]
         })
     }
 

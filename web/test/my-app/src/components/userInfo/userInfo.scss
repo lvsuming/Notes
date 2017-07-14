@@ -1,0 +1,29 @@
+.row{
+  textarea{
+    width: 100%;
+    min-height: 12rem;
+    margin-left: 2rem;
+    line-height: 2.8rem;
+  }
+  dl{
+    line-height: 3rem;
+    width: 100%;
+    float: left;
+  }
+  dt{
+    width: 30%;
+    float: left;
+  }
+  dd{
+    width: 70%;
+    float: left;
+  }
+  .head-img{
+    width: 10rem;
+    height: 8rem;
+    border-radius: 50%;
+    box-sizing: content-box;
+    margin-top: .5rem;
+    flex-grow:0;
+  }
+}

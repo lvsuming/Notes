@@ -22,13 +22,13 @@ class Module extends React.Component{
     }
 
     getList(){
+
         var _this = this;
-        /*
         var body = 'type=all&pagenum='+this.state.pagenum+'&rowsize='+this.state.rowsize;
         var headers = new Headers();
         var url = base.getUrl.getMyFlowList;
         headers.append('Content-Type', 'application/json');
-        fetch( url+'&'+body, {
+        fetch( url, { //+'&'+body
             method : "GET",
             //credentials: 'include'
             headers : headers
@@ -47,7 +47,7 @@ class Module extends React.Component{
         }, function (e) {
             console.error("Error submitting form!");
         });
-        */
+
         //_this.setState(
         //    {'dataList': myFlowListJSON}
         //);

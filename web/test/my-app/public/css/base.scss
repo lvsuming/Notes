@@ -413,8 +413,8 @@ font
   background: rgba(0, 0, 0, 0.6);
 }
 .row{
-  min-height: 2.4rem;
-  line-height: 2.4rem;
+  min-height: 2.8rem;
+  line-height: 2.8rem;
   border-bottom: 1px solid #f3f3f3;
   padding: 1.6rem;
   background: #fff;
@@ -424,4 +424,28 @@ font
   height: 20px;
   line-height: 20px;
   padding-left: 20px;
+}
+form a input {
+  width: 100%!important;
+}
+
+/**
+按钮
+*/
+button:not(:last-of-type),button:not(:first-of-type){
+  width: 48%;
+}
+.btn-submit,.btn-reset{
+  height: 5.625rem;
+  line-height: 5.625rem;
+  background-color: #4f77ab;
+  color: white;
+  text-align: center;
+  border-radius: 0.5rem;
+}
+.btn-reset{
+  background-color: #c0c0c0;
+}
+.btn-submit.disabled{
+  background-color: #C0C0C0;
 }
