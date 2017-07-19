@@ -1,0 +1,31 @@
+body{
+  background-color: #efefef;
+  ul{
+    background-color: #eee;
+  }
+}
+form {
+  input,select{
+    width: 55%;
+    line-height: 2.8rem;
+    float: right;
+    margin-right: -1rem;
+    -webkit-box-sizing: border-box;
+    border: none;
+    -webkit-appearance: none;
+    background-color: transparent;
+    outline: medium;
+    text-align: right;
+    padding-right: 2.5rem;
+    box-sizing: border-box;
+    text-overflow: ellipsis;
+  }
+}
+.row label {
+  white-space: nowrap;
+  color: #666;
+}
+.select_bg {
+  padding-right: 2.5rem;
+  background: url('./images/icon-arrow_right.png') no-repeat right center #fff;
+}

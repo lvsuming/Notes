@@ -77,7 +77,7 @@
 
 .businessstep .step-0:before, .businessstep .step-1:before, .businessstep .step-2:before {
   content: '';
-  background: url("../img/icon-step-points.png") no-repeat #fff;
+  background: url("./images/icon-step-points.png") no-repeat #fff;
   width: 2rem;
   height: 3rem;
   float: left;

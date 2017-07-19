@@ -6,6 +6,10 @@ import BusinesstripCreate from '../businesstripApplication/businesstripCreate.js
 import MeetingList from '../meetingApplication/meetingList.jsx';
 import MyFlow from '../myFlow/myFlow.jsx';
 import AllApp from '../home/allApp.jsx';
+import BusinesstripApplication from '../businesstripApplication/businesstripApplication.jsx';
+import BusinesstripTraffic from '../businesstripApplication/businesstripTraffic.jsx';
+import BusinesstripHotel from '../businesstripApplication/businesstripHotel.jsx';
+import Contact from '../contact/contact.jsx';
 class IndexPage extends React.Component{
     render(){
         return <Router history={hashHistory}>
@@ -14,7 +18,11 @@ class IndexPage extends React.Component{
                 <Route path="/myFlow" component={MyFlow}/>
                 <Route path="/leaveApplication" component={LeaveApplication}/>
                 <Route path="/businesstripCreate" component={BusinesstripCreate}/>
+                <Route path="/businesstripCreate/businesstripApplication" component={BusinesstripApplication}/>
+                <Route path="/businesstripCreate/businesstripTraffic" component={BusinesstripTraffic}/>
+                <Route path="/businesstripCreate/businesstripHotel" component={BusinesstripHotel}/>
                 <Route path="/meetingList" component={MeetingList}/>
+                <Route path="/contact" component={Contact}/>
             </Router>
     }
 }

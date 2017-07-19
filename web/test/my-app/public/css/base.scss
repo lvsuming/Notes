@@ -238,7 +238,7 @@ font
 	border-color: red;
 }
 .border-blue{
-	border-color: blue;
+	border-color: $blue;
 }
 .grid-1{
     width: 100%;
@@ -263,18 +263,9 @@ font
 .border-bottom{
   border-bottom: 1px solid #eee;
 }
-/* px取值
- * pixels to rems
- */
 
 /**
-按钮
-*/
-.border-radius{
-  border-radius:4px;
-}
-/**
-颜色，blue支付宝#118EEA
+颜色，$blue : #4f77ab;
 */
 .white {
   color: white;
@@ -295,7 +286,7 @@ font
   color: #ccc;
 }
 .blue{
-  color:#118EEA;
+  color:$blue;
 }
 .orange{
   color:orange;
@@ -305,7 +296,7 @@ font
 }
 .bg-blue{
   color:#FFF;
-  background-color:#118EEA;
+  background-color:$blue;
 }
 .bg-gray{
   background-color:rgb(243, 243, 243)!important;
@@ -317,7 +308,7 @@ font
   background-color: yellow;
 }
 .af-blue:after{
-  color:#118EEA;
+  color:$blue;
 }
 .bg-green{
   color:#FFF;
@@ -438,7 +429,7 @@ button:not(:last-of-type),button:not(:first-of-type){
 .btn-submit,.btn-reset{
   height: 5.625rem;
   line-height: 5.625rem;
-  background-color: #4f77ab;
+  background-color: $blue;
   color: white;
   text-align: center;
   border-radius: 0.5rem;

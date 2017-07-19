@@ -3,7 +3,7 @@ import base from '../base';
 import common from '../common';
 import PropTypes from 'prop-types';
 import HomeFlowItem from './homeFlowItem.jsx';
-//import myFlowListJSON from '../json/myFlowList.json'; ///public
+import myFlowListJSON from '../json/myFlowList.json'; ///public
 class Module extends React.Component{
     static propTypes = {
         docSubject: PropTypes.string,
@@ -22,11 +22,11 @@ class Module extends React.Component{
     }
 
     getList(){
-
+        console.log(myFlowListJSON);
         var _this = this;
         var body = 'type=all&pagenum='+this.state.pagenum+'&rowsize='+this.state.rowsize;
         var headers = new Headers();
-        var url = base.getUrl.getMyFlowList;
+        var url = '../json/myFlowList.json';//base.getMyFlowList;
         headers.append('Content-Type', 'application/json');
         fetch( url, { //+'&'+body
             method : "GET",
