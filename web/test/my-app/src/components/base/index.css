@@ -18,6 +18,13 @@ form input, form select {
   box-sizing: border-box;
   text-overflow: ellipsis; }
 
+form a input {
+  width: 100% !important; }
+
+.row label {
+  white-space: nowrap;
+  color: #666; }
+
 .select_bg {
   padding-right: 2.5rem;
   background: url("./images/icon-arrow_right.png") no-repeat right center #fff; }

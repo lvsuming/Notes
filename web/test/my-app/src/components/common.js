@@ -4,6 +4,8 @@ import 'es6-promise';
 import base,{$,getUrl} from './base';
 import mobileSelect from './mobileSelector/js/mobileSelect';
 import './mobileSelector/css/mobileSelect.css';
+//import './mobiscrollTime/js/mobiscroll';
+//import './mobiscrollTime/css/mobiscroll.css';
 let common = {};
 common.getFetch = function(that) {
     var str = '';

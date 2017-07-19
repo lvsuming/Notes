@@ -8,7 +8,7 @@ import './businesstripCreate.css';
 import BusinesstripApplication from './businesstripApplication.jsx';
 import BusinesstripTraffic from './businesstripTraffic.jsx';
 import BusinesstripHotel from './businesstripHotel.jsx';
-import Row from '../base/row.jsx';
+import Row from '../../components/base/row.jsx';
 let cacheData = sessionStorage.getItem('cacheData') ?  JSON.parse(decodeURIComponent(sessionStorage.getItem('cacheData'))): {},
     businesstripCreateData = (!base.isEmptyObject(cacheData)&&!base.isEmptyObject(cacheData.businesstripCreate)) ? cacheData.businesstripCreate : {};
 

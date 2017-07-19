@@ -20,6 +20,9 @@ form {
     box-sizing: border-box;
     text-overflow: ellipsis;
   }
+  a input{
+    width: 100%!important;
+  }
 }
 .row label {
   white-space: nowrap;

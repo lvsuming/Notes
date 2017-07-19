@@ -22,7 +22,6 @@ class Module extends React.Component{
     }
 
     getList(){
-        console.log(myFlowListJSON);
         var _this = this;
         var body = 'type=all&pagenum='+this.state.pagenum+'&rowsize='+this.state.rowsize;
         var headers = new Headers();
