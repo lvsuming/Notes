@@ -20,7 +20,8 @@ function resetViewport() {
 resetViewport();
 
 let $ = function (e) {
-    return document.querySelector(e) || document.querySelectorAll(e)
+    if(e instanceof HTMLElement) return e;
+    return document.querySelectorAll(e) || document.querySelector(e)
 };
 HTMLElement.prototype.hasClass = function (cls) {
     return this.className.match(new RegExp('(\\s|^)' + cls + '(\\s|$)'));
