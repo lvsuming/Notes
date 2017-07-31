@@ -29,16 +29,16 @@ HTMLElement.prototype.hasClass = function (cls) {
 HTMLElement.prototype.addClass = function (cls) {
     if(this instanceof Array){
         for(var i=0,len=this.length;i<len;i++){
-            if (!this.hasClass(this[i], cls)) this.className += " " + cls;
+            if (!this[i].hasClass(cls)) this[i].className += " " + cls;
         }
     }else{
-        if (!this.hasClass(this, cls)) this.className += " " + cls;
+        if (!this.hasClass(cls)) this.className += " " + cls;
     }
 };
 HTMLElement.prototype.removeClass = function (cls) {
     if (this.hasClass(cls)) {
-        var reg = new RegExp('(\\s|^)' + cls + '(\\s|$)');
-        this.className = this.className.replace(reg, ' ');
+        var reg = new RegExp('(\\s|^)*' + cls + '(\\s|$)*','g');
+        this.className = this.className.replace(reg, '');
     }
 };
 

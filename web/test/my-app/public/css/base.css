@@ -457,3 +457,10 @@ button:not(:last-of-type),button:not(:first-of-type){
 .btn-submit.disabled{
   background-color: #C0C0C0;
 }
+
+/*
+校验出错提示
+*/
+.error{
+  border: 1px solid red;
+}

@@ -3,10 +3,16 @@ import Row from '../../components/base/row.jsx';
 //import '../../components/mobiscrollTime/js/jquery.1.7.2.min';
 //import '../../components/mobiscrollTime/js/mobiscroll';
 class Page extends React.Component{
+    checkTel(e){
+        var dom = e ? e.fd_traveller_tel : null,
+            val = dom ? dom.value : '',
+            reg = /^(13[0-9]|14[5|7]|15\d{1}|18\d{1})\d{8}$/;
+        !reg.test(val) ? dom.addClass('error') : dom.removeClass('error');
+    }
     render(){
         return <form>
             <Row title="出差人" name="fd_traveller" readOnly="true" selectMore="true" link="/contact"></Row>
-            <Row title="出差人手机号" name="fd_traveller_tel" type="number" placeholder="请填写(必填)"></Row>
+            <Row title="出差人手机号" name="fd_traveller_tel" type="number" placeholder="请填写(必填)" onChange={this.checkTel}></Row>
             <Row title="出差人部门" name="fd_traveller_dept" readOnly="true" placeholder=" "></Row>
             <Row title="出差人职位" name="fd_traveller_post" readOnly="true" placeholder=" "></Row>
             <div className="noticebar"></div>

@@ -39,11 +39,15 @@ class Row extends React.Component{
             this.openNewPage(link);
         }
     }
+    onChange(){
+        var onChangeFun = this.props.onChange;
+        if(onChangeFun) onChangeFun(this.refs);
+    }
     render(){
         return <div className="row flex">
             <span className={this.props.className || ''}>{this.props.title || ''}</span>
             <input type="hidden" name={this.props.name || ''}/>
-            <input type={this.props.type || 'text'} className={"grid-2 align-right"+this.state.selectMore} id={this.props.name || ''} ref={this.props.name} placeholder={this.props.placeholder || '请选择(必填)'} onClick={this.bindHandle.bind(this)}/>
+            <input type={this.props.type || 'text'} className={"grid-2 align-right"+this.state.selectMore} id={this.props.name || ''} ref={this.props.name} placeholder={this.props.placeholder || '请选择(必填)'} onClick={this.bindHandle.bind(this)} onChange={this.onChange.bind(this)}/>
         </div>
     }
 }
