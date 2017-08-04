@@ -1,6 +1,6 @@
 import React from 'react';
 import {Router,Route,hashHistory,Link} from 'react-router';
-import base,{$,getUrl} from '../../components/base';
+import base,{$} from '../../components/base';
 import common from '../../components/common';
 import UserInfo from '../../components/userInfo/userInfo.jsx';
 import '../../components/base/index.css';
@@ -106,8 +106,8 @@ class RadioSwitch extends React.Component{
 }
 
 class Page extends React.Component{
-    constructor(props){
-        super(props);
+    constructor(){
+        super();
     }
 
     bindTravellerDept(){

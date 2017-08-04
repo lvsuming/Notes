@@ -1,11 +1,11 @@
-import React from 'react';
 import 'whatwg-fetch';
 import 'es6-promise';
-import base,{$,getUrl} from './base';
+import base,{getUrl} from './base';
 import mobileSelect from './mobileSelector/js/mobileSelect';
 import './mobileSelector/css/mobileSelect.css';
 //import './mobiscrollTime/js/mobiscroll';
 //import './mobiscrollTime/css/mobiscroll.css';
+//import $ from './jquery-3.2.1.slim.min';
 let common = {};
 common.getFetch = function(that) {
     var str = '';
@@ -102,7 +102,7 @@ common.commonFun = (function () {
             }
         },
         //time选择器
-        _dateTimePicker = function (dom,timeType,callback,defaultData) {
+        /*_dateTimePicker = function (dom,timeType,callback,defaultData) {
             var currYear = (new Date()).getFullYear();
             var opt = {};
             opt.date = {
@@ -129,17 +129,17 @@ common.commonFun = (function () {
                     if(callback) callback(valueText,inst);
                 }
             };
-            var optDateTime = $.extend(opt['datetime'], opt['default']);
-            var optTime = $.extend(opt['time'], opt['default']);
+            var optDateTime = $.extend(true,opt['datetime'], opt['default']);
+            var optTime = $.extend(true,opt['time'], opt['default']);
             //timeType对应：date-->日期，time-->时间，'datatime'或''-->日期时间
             if(timeType === 'date'){
-                $(dom).mobiscroll($.extend(opt['date'], opt['default']));
+                $(dom).mobiscroll($.extend(true,opt['date'], opt['default']));
             }else if(timeType === 'time'){
                 $(dom).mobiscroll(optTime).time(optTime);
             }else{
                 $(dom).mobiscroll(optDateTime).datetime(optDateTime);
             }
-        },
+        },*/
         _ajaxFun = function (para) {
             var preAjaxUrl;
             if(preAjaxUrl === para.url){ //防止重复请求
@@ -185,7 +185,7 @@ common.commonFun = (function () {
             });
             return $ajax;*/
         },
-        _loadMoreData = function (callback) {
+        /*_loadMoreData = function (callback) {
             $(window).bind('scroll',function () {
                 var scrollTop = $(window).scrollTop();
                 var scrollHeight = $(document).height();
@@ -248,10 +248,10 @@ common.commonFun = (function () {
             }
             //window.history.pushState('forward', null, '#'); //在IE中必须得有这两行
             //window.history.forward(1);
-        },
+        },*/
         _checkFun = {
             isPhone : function (number) {
-                var reg = /^(1[3|4|5|7|8]\d{9}|\-|\(\)\+)+$/,
+                var reg = /^(1[3|4|5|7|8]\d{9}|-|\(\)\+)+$/,
                     flag = true;
                 if(!reg.test(number)){
                     flag = false;
@@ -302,8 +302,8 @@ common.commonFun = (function () {
             poptip = document.getElementById('poptip');
             poptip.innerHTML = source;
             var hidePoptip = function () {
-                var poptip = document.getElementById('poptip'),
-                    content = document.getElementsByClassName('content')[0];
+                var poptip = document.getElementById('poptip');
+                //var content = document.getElementsByClassName('content')[0];
                 poptip.innerHTML = '';
             };
 
@@ -397,16 +397,16 @@ common.commonFun = (function () {
 
     return {
         mobileSelect: _mobileSelect,
-        dateTimePicker: _dateTimePicker,
+        //dateTimePicker: _dateTimePicker,
         ajaxFun: _ajaxFun,
-        switchTab: _switchTab,
-        listenReturnBtn: _listenReturnBtn,
-        checkFun: _checkFun,
+        //switchTab: _switchTab,
+        //listenReturnBtn: _listenReturnBtn,
+        //checkFun: _checkFun,
         poptip: _poptip,
         getCurUserInfo: _getCurUserInfo,
         fillCacheData: _fillCacheData,
-        loadMoreData: _loadMoreData,
-        returnTopHandler: _returnTopHandler
+        //loadMoreData: _loadMoreData,
+        //returnTopHandler: _returnTopHandler
     };
 }());
 export default common;

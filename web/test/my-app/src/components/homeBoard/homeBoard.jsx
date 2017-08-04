@@ -1,11 +1,11 @@
 import React from 'react';
 import {Link} from 'react-router';
 import  './homeBoard.css';
-import base,{getUrl} from '../base';
+import {getUrl} from '../base';
 class HomeBoard extends React.Component{
     getMytodoNum(){
         var _this = this;
-        var body = 'type=all&pagenum';
+        //var body = 'type=all&pagenum';
         fetch( getUrl.getMytodoNum , { //+'&'+body
             method : "GET",
             credentials: 'include'
@@ -27,7 +27,7 @@ class HomeBoard extends React.Component{
     }
     getMyprocessNum(){
         var _this = this;
-        var body = 'type=all&pagenum';
+        //var body = 'type=all&pagenum';
         fetch( getUrl.getMyprocessNum , { //+'&'+body
             method : "GET",
             credentials: 'include'

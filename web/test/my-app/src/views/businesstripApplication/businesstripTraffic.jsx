@@ -1,7 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router';
 import PropTypes from 'prop-types';
-import base,{$,getUrl} from '../../components/base';
+import base,{$} from '../../components/base';
 import common from '../../components/common';
 import Row from '../../components/base/row.jsx';
 
@@ -89,16 +89,23 @@ class Article extends React.Component{
             };
         common.commonFun.mobileSelect(trafficToolPara);
     }
-
+    checkCardID(e){
+        var dom = e ? e.fd_cardID : null,
+            val = dom ? dom.value : '',
+            reg = /^[1-9]\d{5}((19|20)[0-9]{2})((0\d)|(1[0-2]))(([0|1|2]\d)|3[0-1])\d{3}([0-9]|X)$/;
+        !reg.test(val) ? dom.addClass('error') : dom.removeClass('error');
+    }
     componentDidMount(){
         this.bindTravellerType();
         this.bindTrafficTool();
     }
     render(){
-        return(<article>
+        var domIconDel;
+        if(this.state.data.num!==1) domIconDel=<span className="icon-del" onClick={this.props.delJourney.bind(this)}></span>;
+        return(<article data-id={this.state.data?this.state.data.num:1}>
                 <div className="row flex">
-                    <span className="blue">行程单 ({this.state.data?this.state.data.num+1:1})</span>{/*{no+1}*/}
-                    <span className="icon-del"></span>
+                    <span className="blue">行程单 ({this.state.data?this.state.data.num:1})</span>
+                    {domIconDel}
                 </div>
                 <div className="row flex">
                     <Link to="/businesstripCreate/businesstripTraffic/businesstrip-tips">
@@ -110,7 +117,7 @@ class Article extends React.Component{
                 <Row title="证件号码" name="fd_cardID" placeholder="自行预定可不填证件号" onChange={this.checkCardID}></Row>
                 <div className="row flex">
                     <Link to="/businesstripCreate/businesstripTraffic/businesstrip-tips">
-                        <label className="icon-tip-business">交通工具</label>
+                        <label>交通工具</label>
                     </Link>
                     <input type="hidden" name="fd_transport"/>
                     <input type="text" id="fd_transport" className="meeting_type select_bg" placeholder="请选择(必填)" readOnly/>
@@ -119,30 +126,68 @@ class Article extends React.Component{
                 <Row title="目的城市" name="fd_travel_to" placeholder="请选择(必填)" selectMore="true" readOnly="true"></Row>
                 <div className="row flex">
                     <label htmlFor="fd_departure_time">出发时间</label>
-                    <input type="datetime" id="fd_departure_time0" name="fd_departure_time" value="" className="meeting_start select_bg align-right" placeholder="请选择(必填)" readOnly/>
+                    <input type="datetime" id="fd_departure_time" name="fd_departure_time" value="" className="meeting_start select_bg align-right" placeholder="请选择(必填)" readOnly/>
                 </div>
                 <Row title="预定时段" name="fd_preset_time" placeholder="无特殊要求" ></Row>
             </article>
         )
     }
 }
-class Page extends React.Component{
+class Articles extends React.Component{
     constructor(props){
         super(props);
         this.state = {
-            num : 0
+            data: props.data
         }
     }
-    checkCardID(e){
-        var dom = e ? e.fd_cardID : null,
-            val = dom ? dom.value : '',
-            reg = /^[1-9]\d{5}((19|20)[0-9]{2})((0\d)|(1[0-2]))(([0|1|2]\d)|3[0-1])\d{3}([0-9]|X)$/;
-        !reg.test(val) ? dom.addClass('error') : dom.removeClass('error');
+    componentWillReceiveProps(nextProps) {
+        this.setState({
+            data: nextProps.data
+        });
+    }
+    render(){
+        var self=this;
+        return (<div>
+            {this.state.data.map((item,index) => {
+                return <Article data={item} key={index} delJourney={self.props.delJourney}></Article>
+            })}
+        </div>)
+    }
+}
+class Page extends React.Component{
+    constructor(){
+        super();
+        this.state = {
+            data: [],
+            delJourney: this.delJourney
+        }
+    }
+    addJourney(){
+        let num = this.state.data.length,
+            data = this.state.data;
+        data.push({
+            'num': num+1
+        });
+        this.setState({
+            data : data
+        });
+    }
+    componentWillMount(){
+        this.addJourney();
+    }
+    delJourney(e){
+        let data = this.state.data;
+        let target = e.target;
+        let index = target.parentNode.parentNode.getAttribute('data-id');
+        data.splice(Number(index)-1,1);
+        this.setState({
+            data : data
+        });
     }
     render(){
         return <form>
-            <Article data={{'num':0}}></Article>
-            <div className="row addJourney mb9"></div>
+            <Articles data={this.state.data} delJourney={this.delJourney.bind(this)}/>
+            <div className="row addJourney mb9" style={{marginBottom: 9+'rem'}} onClick={this.addJourney.bind(this)}></div>
             <div className="row fixed bg-gray">
                 <button type="button" className="btn-submit grid-1 disabled">确定</button>
             </div>

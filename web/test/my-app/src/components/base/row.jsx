@@ -1,15 +1,13 @@
 import React from 'react';
-import ReactDom from 'react-dom';
-import {history,hashHistory} from 'react-router';
+import {hashHistory} from 'react-router';
 import PropTypes from 'prop-types';
-import Contact from '../../views/contact/contact.jsx';
 class Row extends React.Component{
     constructor(props){
         super(props);
         this.state = {
             name: this.props.name || '',
-            readOnly : this.props.readOnly&&this.props.readOnly!='false' ? this.props.readOnly : '',
-            selectMore : this.props.selectMore&&this.props.selectMore!='false' ? ' select_bg' : '',
+            readOnly : this.props.readOnly&&this.props.readOnly!=='false' ? this.props.readOnly : '',
+            selectMore : this.props.selectMore&&this.props.selectMore!=='false' ? ' select_bg' : '',
             link : this.props.link
         }
     }
@@ -45,7 +43,7 @@ class Row extends React.Component{
     }
     render(){
         return <div className="row flex">
-            <span className={this.props.className || ''}>{this.props.title || ''}</span>
+            <label className={this.props.className || ''} htmlFor={this.props.name || ''}>{this.props.title || ''}</label>
             <input type="hidden" name={this.props.name || ''}/>
             <input type={this.props.type || 'text'} className={"grid-2 align-right"+this.state.selectMore} id={this.props.name || ''} ref={this.props.name} placeholder={this.props.placeholder || '请选择(必填)'} onClick={this.bindHandle.bind(this)} onChange={this.onChange.bind(this)}/>
         </div>

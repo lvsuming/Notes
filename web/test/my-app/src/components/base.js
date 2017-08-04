@@ -112,8 +112,8 @@ var baseTool = function () {
             return !1;
         return !0
     },
-    _serialize = function (form) {
-        var form = document.querySelector(form);
+    _serialize = function (selector) {
+        var form = document.querySelector(selector);
         var arr = {};
         for (var i = 0; i < form.elements.length; i++) {
             var feled = form.elements[i];
@@ -126,16 +126,15 @@ var baseTool = function () {
                     break;
                 case 'checkbox':
                 case 'radio':
-                    if (!feled.checked) {
-                        break;
-                    }
+                    if (!feled.checked) break;
+                    break;
                 default:
                     if (arr[feled.name]) {
                         arr[feled.name] = arr[feled.name] + ',' + feled.value;
                     } else {
                         arr[feled.name] = feled.value;
-
                     }
+                    break;
             }
         }
         return arr

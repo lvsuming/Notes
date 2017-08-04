@@ -3,9 +3,6 @@ import './contact.css';
 import base,{$} from '../../components/base';
 import {makePy} from './jquery.charfirst.pinyin';
 class ContactItem extends React.Component{
-    constructor(props){
-        super(props);
-    }
     isShowDefaultImg(){
         if(this.props.value && this.props.value.type===8){
             return <img src={this.props.value.imgUrl} alt=""/>;
@@ -51,12 +48,12 @@ class Contact extends React.Component{
         dataValue = dataValue ? JSON.parse(dataValue) : null;
         type = dataValue ? dataValue.type : '';
         if(type && (type==='2' || type==='4')){
-            var fdId = dataValue.fdId,
-                fdName = dataValue.fdName;
+            //var fdId = dataValue.fdId,
+            //    fdName = dataValue.fdName;
             //getSysOrgElement('',fdId,fdName,currentType);
         }else if(type && type==='8'){
             var targetData = JSON.parse(target.getAttribute('data-Value'));
-            if(isMultiSelect && isMultiSelect!='false'){
+            if(isMultiSelect && isMultiSelect!=='false'){
                 var index = -1;
                 for(var i=0,len=resultSelected.length;i<len;i++){
                     if(targetData.fdId === resultSelected[i].fdId) index=i;
@@ -121,7 +118,7 @@ class Contact extends React.Component{
             SortBox.append(sortLetter);
         });
 
-        if(num!=0){SortBox.append('<div class="sort_letter" id="default">#</div>');}
+        if(num!==0){SortBox.append('<div class="sort_letter" id="default">#</div>');}
 
         for (var i =0;i<SortList.length;i++) {//插入到对应的首字母后面
             var letter=makePy(SortList[i].querySelector('.num_name').innerHTML.charAt(0))[0].toUpperCase();
@@ -133,7 +130,7 @@ class Contact extends React.Component{
     componentDidMount(){
         this.reSort();
         let isMultiSelect = base.getUrlParam('isMultiSelect') || false;
-        if(isMultiSelect && isMultiSelect!='false') $('.btn-submit').bind('click',this.gotoUrl).closest('.row').removeClass('hide');
+        if(isMultiSelect && isMultiSelect!=='false') $('.btn-submit').bind('click',this.gotoUrl).closest('.row').removeClass('hide');
     }
     render(){
         return (
@@ -156,7 +153,7 @@ class Contact extends React.Component{
                 </div>
                 <div className="initials">
                     <ul>
-                        <li><img src="./images/icon-star-contact.png"/></li>
+                        <li><img src="./images/icon-star-contact.png" alt=""/></li>
                         {this.initials()}
                     </ul>
                 </div>
