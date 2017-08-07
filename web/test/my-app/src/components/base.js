@@ -1,30 +1,22 @@
 import {History} from 'react-router';
-//重置meta
-function resetViewport() {
-    var headDom = document.getElementsByTagName('head')[0],
-        phoneWidth = parseInt(window.screen.width,10)<375 ? parseInt(window.screen.width,10)*2 : 750,
-        maximumScale = phoneWidth / 750,
-        ua = navigator.userAgent;
-    var dom = document.createElement('meta');
-    dom.name = 'viewport';
-    dom.content = 'width='+phoneWidth+',user-scalable=no,target-densitydpi=device-dpi';
-    if (/Android (\\d+\.\d+)/.test(ua)) {
-        var version = parseFloat(RegExp.$1);
-        if (version > 2.3) {
-            dom += ',minimum-scale='+maximumScale;
-            dom += ',maximum-scale='+maximumScale;
-        }
-    }
-    headDom.appendChild(dom);
-}
-resetViewport();
 
 let $ = function (e) {
-    if(e instanceof HTMLElement) return e;
-    return document.querySelectorAll(e) || document.querySelector(e)
+    if(e.indexOf(',')>-1){
+        var arr = e.split(','),
+            arrDom = [];
+        [...arr].forEach(function (item,index) {
+            var dom = document.querySelectorAll(item);
+            if(dom.length>0) Array.prototype.push.apply(arrDom,dom);
+        });
+        return arrDom;
+    }else{
+        if(e instanceof HTMLElement) return e;
+        return document.querySelectorAll(e) || document.querySelector(e)
+    }
 };
 HTMLElement.prototype.hasClass = function (cls) {
-    return this.className.match(new RegExp('(\\s|^)' + cls + '(\\s|$)'));
+    var reg = new RegExp('(\\s|^)' + cls + '(\\s|$)');
+    return reg.test(this.className);
 };
 HTMLElement.prototype.addClass = function (cls) {
     if(this instanceof Array){

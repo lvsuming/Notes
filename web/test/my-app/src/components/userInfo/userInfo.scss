@@ -1,29 +1,26 @@
-.row{
-  textarea{
-    width: 100%;
-    min-height: 12rem;
-    margin-left: 2rem;
-    line-height: 2.8rem;
-  }
-  dl{
-    line-height: 3rem;
-    width: 100%;
-    float: left;
-  }
-  dt{
-    width: 30%;
-    float: left;
-  }
-  dd{
-    width: 70%;
-    float: left;
-  }
-  .head-img{
-    width: 10rem;
-    height: 8rem;
-    border-radius: 50%;
-    box-sizing: content-box;
-    margin-top: .5rem;
-    flex-grow:0;
-  }
-}
+.row textarea {
+  width: 100%;
+  min-height: 12rem;
+  margin-left: 2rem;
+  line-height: 2.8rem; }
+
+.row dl {
+  line-height: 1.5rem;
+  width: 100%;
+  float: left; }
+
+.row dt {
+  width: 30%;
+  float: left; }
+
+.row dd {
+  width: 70%;
+  float: left; }
+
+.row .head-img {
+  width: 5rem;
+  height: 4rem;
+  border-radius: 50%;
+  box-sizing: content-box;
+  margin-top: .2rem;
+  flex-grow: 0; }

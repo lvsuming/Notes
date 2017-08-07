@@ -5,30 +5,46 @@ import common from '../../components/common';
 import Row from '../../components/base/row.jsx';
 import { DatePicker } from 'antd';
 import moment from 'moment';
+import 'moment/locale/zh-cn';
+moment.locale('zh-cn');
 let cacheData = sessionStorage.getItem('cacheData') ?  JSON.parse(decodeURIComponent(sessionStorage.getItem('cacheData'))): {},
-    businesstripHotelData = (!base.isEmptyObject(cacheData)&&!base.isEmptyObject(cacheData.businesstripHotelData)) ? cacheData.businesstripHotelData : {};
-let saveCacheData = function(e,key,value) {
-    if(key && (value || value==='')){
-        businesstripHotelData[key] = value;
-    }
-    if(key && !value){
-        delete businesstripHotelData[key];
-        return;
-    }
-    var nowTime = new Date().getTime(),
-        $targetDom = e ? $(e.target) : null;
-    if($targetDom){
-        var id = $targetDom.attr('id'),
-            val = $targetDom.val() || $targetDom.text();
-        businesstripHotelData[id] = val;
-    }
-    businesstripHotelData.timestamp = nowTime;
-    cacheData.businesstripHotelData = businesstripHotelData;
-    sessionStorage.setItem('cacheData',JSON.stringify(cacheData));
-    checkForm();
-};
-let checkForm = function () {
+    hotelCacheData = (!base.isEmptyObject(cacheData)&&!base.isEmptyObject(cacheData.businesstripHotelData)) ? cacheData.businesstripHotelData : {},
+    num = 0, //行程数
+    curNum = 0; //当前操作的行程数
 
+var timeOutHandler;
+function saveCacheData(e,key,value) {
+    var nowTime = new Date().getTime(),
+        $targetDom = e ? $(e.target || e) : null;
+    if($targetDom){
+        curNum = $targetDom.closest('form').index();
+        var id = $targetDom.attr('id').replace(curNum,''),
+            val = $targetDom.val() || $targetDom.text();
+        appendObj();
+        hotelCacheData.data[curNum][id] = val;
+    }else if(key && value){
+        var num = base.getUrlParam('num');
+        if(num) curNum = num;
+        if(!hotelCacheData.data[curNum]) appendObj(curNum);
+        hotelCacheData.data[curNum][key] = value;
+    }
+
+    hotelCacheData.timestamp = nowTime;
+    cacheData.businesstripHotel = hotelCacheData;
+    clearTimeout(timeOutHandler);
+    timeOutHandler = setTimeout(function () {
+        sessionStorage.setItem('cacheData', JSON.stringify(cacheData));
+    },500);
+    checkForm();
+
+    function appendObj() {
+        if(!(curNum+'')) return;
+        if(hotelCacheData.data.length<=curNum) hotelCacheData.data.splice(curNum, 0, {});
+        if(hotelCacheData.data.length<=curNum) appendObj();
+    }
+}
+let checkForm = function (param) {
+    console.log(param);
 };
 
 class Article extends React.Component{
@@ -98,6 +114,20 @@ class Article extends React.Component{
         //common.commonFun.dateTimePicker('#fd_in_time'+this.state.data.num,'date');
 
     }
+    changeInTime(date,dateString){
+        console.log(date,dateString);
+        saveCacheData(null,'fd_in_time',dateString);
+    }
+    changeOutTime(date,dateString){
+        var outTime = new Date(date._d).getTime();
+
+    }
+
+    disabledDate(current) {
+
+        return current && current.valueOf() < Date.now()
+    };
+    //const timeStartProps =
     render(){
         var domIconDel,
         num = this.state.data ? this.state.data.num : 1;
@@ -123,10 +153,17 @@ class Article extends React.Component{
                 <Row title="酒店类型" className="agreement" name={"fd_hotel_type"+num} placeholder="" readOnly="true" selectMore="true"></Row>
                 <Row title="入住人" name={"fd_name"+num} placeholder="请填写(必填)"></Row>
                 <Row title="入住城市" name={"fd_city"+num} placeholder="" readOnly="true" selectMore="true"></Row>
-                <Row title="入住时间" type="datetime" name={"fd_in_time"+num} placeholder="" readOnly="true" selectMore="true"></Row>
-                <Row title="退房时间" type="datetime" name={"fd_out_time"+num} placeholder="" readOnly="true" selectMore="true"></Row>
+                {/*<Row title="入住时间" type="datetime" name={"fd_in_time"+num} placeholder="" readOnly="true" selectMore="true" onChange={this.changeDateTime.bind(this)}></Row>
+                <Row title="退房时间" type="datetime" name={"fd_out_time"+num} placeholder="" readOnly="true" selectMore="true" onChange={this.changeDateTime.bind(this)}></Row>*/}
+                <div className="row flex">
+                    <label>入住时间</label>
+                    <DatePicker showTime={{ format: 'HH:mm' }} ref={"fd_in_time"+num} format="YYYY-MM-DD HH:mm" onChange={this.changeInTime} placeholder="请选择(必填)"/>
+                </div>
+                <div className="row flex">
+                    <label>退房时间</label>
+                    <DatePicker showTime={{ format: 'HH:mm' }} ref={"fd_in_time"+num} format="YYYY-MM-DD HH:mm" onChange={this.changeOutTime} placeholder="请选择(必填)" disabledDate={this.disabledDate}/>
+                </div>
                 <Row title="入住天数" name={"fd_days"+num} placeholder="" readOnly="true"></Row>
-                <DatePicker defaultValue={moment('2015-01-01', 'YYYY-MM-DD')} />
             </article>
         )
     }
@@ -172,6 +209,12 @@ class Page extends React.Component{
     }
     componentWillMount(){
         this.addJourney();
+    }
+    componentDidMount(){
+        var dom = $('form input,form textarea');
+        [...dom].forEach(function (item,index) {
+            item.addEventListener('oninput',saveCacheData);
+        })
     }
     delJourney(e){
         let data = this.state.data;

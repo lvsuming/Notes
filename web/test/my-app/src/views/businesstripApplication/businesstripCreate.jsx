@@ -56,9 +56,9 @@ let checkForm = function(boolean) {
     else if(boolean && !cacheData.businesstripHotel) common.poptip('请先填写酒店预定');
 
     if(flag){
-        $('button').removeClass('disabled');
+        $('button')[0].removeClass('disabled');
     }else{
-        $('button').addClass('disabled');
+        $('button')[0].addClass('disabled');
     }
     return flag;
 };

@@ -29,7 +29,7 @@
 .mobileSelect .content .panel{
   height: 400px;
   position: relative;
-  top: calc(50% - 45px);
+  top: calc(50% + 40px);
   margin: -200px 0;
 }
 .mobileSelect .content .fixWidth {
@@ -46,15 +46,15 @@
 }
 .mobileSelect .content .btnBar {
   border-bottom: 1px solid #DCDCDC;
-  font-size: 30px;
-  height: 90px;
+  font-size: 16px;
+  height: 40px;
   position: relative;
   text-align: center;
-  line-height: 90px;
+  line-height: 40px;
 }
 .mobileSelect .content .btnBar .cancel,
 .mobileSelect .content .btnBar .ensure {
-  height: 90px;
+  height: 40px;
   width: 110px;
   cursor: pointer;
   position: absolute;
@@ -69,7 +69,7 @@
   color: #1e83d3;
 }
 .mobileSelect .content .btnBar .title {
-  font-size: 30px;
+  font-size: 16px;
 }
 .mobileSelect .content .panel:after {
   content: ".";
@@ -98,20 +98,20 @@
   transition: transform 0.18s ease-out;
 }
 .mobileSelect .content .panel .wheel .selectContainer li {
-  font-size: 30px;
+  font-size: 16px;
   display: block;
-  height: 80px;
-  line-height: 80px;
+  height: 40px;
+  line-height: 40px;
   cursor: pointer;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
 }
 .mobileSelect .content .panel .selectLine {
-  height: 80px;
+  height: 40px;
   width: 100%;
   position: absolute;
-  top: 160px;
+  top: 80px;
   pointer-events: none;
   -moz-box-sizing: border-box;
        box-sizing: border-box;

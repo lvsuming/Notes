@@ -1,7 +1,7 @@
-html,body,div,h1,h2,h3,h4,h5,h6,ul,ol,dl,li,dt,dd,form,fieldset,table,th,td,span,p,input,button {
-    margin:0;
-    padding:0;
-}
+@charset "UTF-8";
+html, body, div, h1, h2, h3, h4, h5, h6, ul, ol, dl, li, dt, dd, form, fieldset, table, th, td, span, p, input, button {
+  margin: 0;
+  padding: 0; }
 
 article, aside, details, figcaption, figure, 
 footer, header, menu, nav, section {
@@ -23,7 +23,7 @@ body {
   -webkit-tap-highlight-color: rgba(255, 0, 0, 0);
   font: 32px/1.5 "Helvetica Neue", Helvetica, "Droid sans fallback", "Microsoft YaHei", Arial, sans-serif;
   margin: 0 auto;
-  background-color: rgb(243, 243, 243);
+  background-color: #f3f3f3!important;
   -webkit-text-size-adjust: 100% !important;/* IOS禁止微信调整字体大小 */
 }
 footer {
@@ -265,6 +265,10 @@ font
 }
 
 /**
+按钮
+*/
+.border-radius {
+  border-radius: 4px; }
 颜色，$blue : #4f77ab;
 */
 .white {
@@ -296,10 +300,10 @@ font
 }
 .bg-blue{
   color:#FFF;
-  background-color:$blue;
+  background-color:#118EEA;
 }
 .bg-gray{
-  background-color:rgb(243, 243, 243)!important;
+  background-color:#f3f3f3!important;
 }
 .red{
   color: #e60000;
@@ -308,7 +312,7 @@ font
   background-color: yellow;
 }
 .af-blue:after{
-  color:$blue;
+  color:#118EEA;
 }
 .bg-green{
   color:#FFF;
@@ -404,39 +408,38 @@ font
   background: rgba(0, 0, 0, 0.6);
 }
 .row{
-  min-height: 2.8rem;
-  line-height: 2.8rem;
+  min-height: 1.4rem;
+  line-height: 1.4rem;
   border-bottom: 1px solid #f3f3f3;
-  padding: 1.6rem;
+  padding: .8rem 1rem;
   background: #fff;
-  text-align: left;
-}
-.noticebar{
-  height: 20px;
-  line-height: 20px;
-  padding-left: 20px;
-}
-form a input {
-  width: 100%!important;
-}
+  text-align: left; }
 
-/**
-按钮
-*/
+.noticebar {
+  height: 10px;
+  line-height: 10px;
+  padding-left: 10px; }
 button:not(:last-of-type),button:not(:first-of-type){
   width: 48%;
 }
 .btn-submit,.btn-reset{
-  height: 5.625rem;
-  line-height: 5.625rem;
-  background-color: $blue;
+  height: 2.8rem;
+  line-height: 2.8rem;
+  background-color: #4f77ab;
   color: white;
   text-align: center;
-  border-radius: 0.5rem;
+  border-radius: 2px;
 }
 .btn-reset{
   background-color: #c0c0c0;
 }
 .btn-submit.disabled{
   background-color: #C0C0C0;
+}
+
+/*
+校验出错提示
+*/
+.error{
+  border: 1px solid red;
 }

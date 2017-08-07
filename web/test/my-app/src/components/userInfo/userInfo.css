@@ -5,7 +5,7 @@
   line-height: 2.8rem; }
 
 .row dl {
-  line-height: 3rem;
+  line-height: 1.5rem;
   width: 100%;
   float: left; }
 
@@ -18,9 +18,9 @@
   float: left; }
 
 .row .head-img {
-  width: 10rem;
-  height: 8rem;
+  width: 5rem;
+  height: 4rem;
   border-radius: 50%;
   box-sizing: content-box;
-  margin-top: .5rem;
+  margin-top: .2rem;
   flex-grow: 0; }

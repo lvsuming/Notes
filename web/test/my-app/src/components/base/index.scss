@@ -4,28 +4,35 @@ body{
 form {
   input,select{
     width: 55%;
-    line-height: 2.8rem;
+    line-height: 1.4rem;
     float: right;
-    margin-right: -1rem;
+    margin-right: -.5rem;
     -webkit-box-sizing: border-box;
     border: none;
     -webkit-appearance: none;
     background-color: transparent;
     outline: medium;
     text-align: right;
-    padding-right: 2.5rem;
+    padding-right: 1.2rem;
     box-sizing: border-box;
     text-overflow: ellipsis;
   }
   a input{
     width: 100%!important;
   }
+  input.ant-input{
+    border:none;
+    padding-right: 1.2rem;
+    color: #000;
+    background: url("./images/icon-arrow_right.png") no-repeat right center #fff;}
+  .ant-calendar-picker-icon:after{
+    content: '';}
 }
 .row label {
   white-space: nowrap;
   color: #666;
 }
 .select_bg {
-  padding-right: 2.5rem;
+  padding-right: 1.2rem;
   background: url('./images/icon-arrow_right.png') no-repeat right center #fff;
 }

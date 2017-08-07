@@ -20,7 +20,7 @@ body {
   -webkit-tap-highlight-color: rgba(255, 0, 0, 0);
   font: 32px/1.5 "Helvetica Neue", Helvetica, "Droid sans fallback", "Microsoft YaHei", Arial, sans-serif;
   margin: 0 auto;
-  background-color: #f3f3f3;
+  background-color: #f3f3f3!important;
   -webkit-text-size-adjust: 100% !important;
   /* IOS禁止微信调整字体大小 */ }
 
@@ -358,6 +358,9 @@ font
 .before-green:before {
   background-color: green; }
 
+::-webkit-input-placeholder { /* WebKit browsers */
+　　color:#333; }
+
 /**
 外边距，默认25
 */
@@ -429,27 +432,27 @@ font
   background: rgba(0, 0, 0, 0.6); }
 
 .row {
-  min-height: 2.8rem;
-  line-height: 2.8rem;
+  min-height: 28px;
+  line-height: 28px;
   border-bottom: 1px solid #f3f3f3;
-  padding: 1.6rem;
+  padding: .4rem 1rem;
   background: #fff;
   text-align: left; }
 
 .noticebar {
-  height: 20px;
-  line-height: 20px;
-  padding-left: 20px; }
+  height: 10px;
+  line-height: 10px;
+  padding-left: 10px; }
 button:not(:last-of-type),button:not(:first-of-type){
   width: 48%;
 }
 .btn-submit,.btn-reset{
-  height: 5.625rem;
-  line-height: 5.625rem;
+  height: 2.8rem;
+  line-height: 2.8rem;
   background-color: #4f77ab;
   color: white;
   text-align: center;
-  border-radius: 0.5rem;
+  border-radius: 2px;
 }
 .btn-reset{
   background-color: #c0c0c0;
