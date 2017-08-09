@@ -1,7 +1,7 @@
 import {History} from 'react-router';
 
 let $ = function (e) {
-    if(e.indexOf(',')>-1){
+    if(typeof(e)==='string' && e.indexOf(',')>-1){
         var arr = e.split(','),
             arrDom = [];
         [...arr].forEach(function (item,index) {
@@ -33,6 +33,40 @@ HTMLElement.prototype.removeClass = function (cls) {
         this.className = this.className.replace(reg, '');
     }
 };
+HTMLElement.prototype.closest = function (selector) {
+    let el = this,
+        matchesSelector = el.matches || el.webkitMatchesSelector || el.mozMatchesSelector || el.msMatchesSelector;
+    while (el) {
+        if (matchesSelector.call(el, selector)) {
+            break;
+        }
+        el = el.parentElement;
+    }
+    return el;
+};
+
+Date.prototype.format = function(format) {
+    var date = {
+        "M+": this.getMonth() + 1,
+        "d+": this.getDate(),
+        "h+": this.getHours(),
+        "m+": this.getMinutes(),
+        "s+": this.getSeconds(),
+        "q+": Math.floor((this.getMonth() + 3) / 3),
+        "S+": this.getMilliseconds()
+    };
+    if (/(y+)/i.test(format)) {
+        format = format.replace(RegExp.$1, (this.getFullYear() + '').substr(4 - RegExp.$1.length));
+    }
+    for (var k in date) {
+        if (new RegExp("(" + k + ")").test(format)) {
+            format = format.replace(RegExp.$1, RegExp.$1.length == 1
+                ? date[k] : ("00" + date[k]).substr(("" + date[k]).length));
+        }
+    }
+    return format;
+};
+
 
 function getUrl() {
     var _getHost = window.location.protocol+ '//' + window.location.host,

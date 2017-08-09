@@ -57,12 +57,16 @@ class Row extends React.Component{
             inputDom = <DatePicker showTime={{ format: 'HH:mm' }} format="YYYY-MM-DD HH:mm" onChange={this.onChange.bind(this)} placeholder="请选择(必填)"/>
         }else if(this.props.type==='date'){
             inputDom = <DatePicker format="YYYY-MM-DD" onChange={this.onChange.bind(this)} placeholder="请选择(必填)"/>
+        }else if(this.props.selectMore){
+            inputDom = <div style={{width:'100%'}}>
+                <input type="hidden" name={this.props.name || ''}  onChange={this.onChange.bind(this)}/>
+                <input type={this.props.type || 'text'} className={"grid-2 align-right"+this.state.selectMore} id={this.props.name+this.props['data-num'] || ''} ref={this.props.name} placeholder={this.props.placeholder || '请选择(必填)'} onClick={this.bindHandle.bind(this)} onChange={this.onChange.bind(this)}/>
+            </div>
         }else{
-            inputDom = <input type={this.props.type || 'text'} className={"grid-2 align-right"+this.state.selectMore} id={this.props.name || ''} ref={this.props.name} placeholder={this.props.placeholder || '请选择(必填)'} onClick={this.bindHandle.bind(this)} onChange={this.onChange.bind(this)}/>
+            inputDom = <input type={this.props.type || 'text'} className={"grid-2 align-right"+this.state.selectMore} name={this.props.name || ''} id={this.props.name+this.props['data-num'] || ''} ref={this.props.name} placeholder={this.props.placeholder || '请选择(必填)'} onClick={this.bindHandle.bind(this)} onChange={this.onChange.bind(this)}/>
         }
         return <div className="row flex">
             <label className={this.props.className || ''} htmlFor={this.props.name || ''}>{this.props.title || ''}</label>
-            <input type="hidden" name={this.props.name || ''}/>
             {inputDom}
         </div>
     }
