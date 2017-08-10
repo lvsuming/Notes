@@ -166,7 +166,7 @@ font
   display: inline-block; }
 
 .hide {
-  display: none; }
+  display: none!important; }
 
 /*浮动
  * $floats 配置对象

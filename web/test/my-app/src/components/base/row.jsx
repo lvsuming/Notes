@@ -59,13 +59,13 @@ class Row extends React.Component{
             inputDom = <DatePicker format="YYYY-MM-DD" onChange={this.onChange.bind(this)} placeholder="请选择(必填)"/>
         }else if(this.props.selectMore){
             inputDom = <div style={{width:'100%'}}>
-                <input type="hidden" name={this.props.name || ''}  onChange={this.onChange.bind(this)}/>
-                <input type={this.props.type || 'text'} className={"grid-2 align-right"+this.state.selectMore} id={this.props.name+this.props['data-num'] || ''} ref={this.props.name} placeholder={this.props.placeholder || '请选择(必填)'} onClick={this.bindHandle.bind(this)} onChange={this.onChange.bind(this)}/>
+                <input type="hidden" name={this.props.name || ''} value={this.props.value ? (this.props.value.id || this.props.value.fdId) : ''} onChange={this.onChange.bind(this)}/>
+                <input type={this.props.type || 'text'} id={this.props.name+(this.props['data-num'] || '')} value={this.props.value ? (this.props.value.value||this.props.value.fdName) : ''} className={"grid-2 align-right"+this.state.selectMore} placeholder={this.props.placeholder || '请选择(必填)'} onClick={this.bindHandle.bind(this)} onChange={this.onChange.bind(this)}/>
             </div>
         }else{
-            inputDom = <input type={this.props.type || 'text'} className={"grid-2 align-right"+this.state.selectMore} name={this.props.name || ''} id={this.props.name+this.props['data-num'] || ''} ref={this.props.name} placeholder={this.props.placeholder || '请选择(必填)'} onClick={this.bindHandle.bind(this)} onChange={this.onChange.bind(this)}/>
+            inputDom = <input type={this.props.type || 'text'} value={this.props.value || ''} className={"grid-2 align-right"+this.state.selectMore} name={this.props.name || ''} id={this.props.name+(this.props['data-num'] || '')} placeholder={this.props.placeholder || '请选择(必填)'} onClick={this.bindHandle.bind(this)} onChange={this.onChange.bind(this)}/>
         }
-        return <div className="row flex">
+        return <div className={"row flex "+(this.props.isValid?'':'hide')}>
             <label className={this.props.className || ''} htmlFor={this.props.name || ''}>{this.props.title || ''}</label>
             {inputDom}
         </div>

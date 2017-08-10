@@ -42,8 +42,6 @@ common.postFetch = function(that) {
     for (let k in that.params) {
         formData.append(k, that.params[k]);
     }
-    formData.append('oper_id', '11');
-    formData.append('oper_name', 'kong');
     var obj = {
         method: 'POST',
         body: formData
@@ -100,90 +98,6 @@ common.commonFun = (function () {
                 MobileSelectObj.updateWheel(para.updateWheel[0],para.updateWheel[1]);
                 return;
             }
-        },
-        //time选择器
-        /*_dateTimePicker = function (dom,timeType,callback,defaultData) {
-            var currYear = (new Date()).getFullYear();
-            var opt = {};
-            opt.date = {
-                preset: 'date'
-            };
-            opt.datetime = {
-                preset: 'datetime'
-            };
-            opt.time = {
-                preset: 'time'
-            };
-            opt.default = {
-                theme: 'android-ics light', //皮肤样式
-                display: 'modal', //显示方式
-                mode: 'scroller', //日期选择模式
-                dateFormat: 'yyyy-mm-dd',
-                lang: 'zh',
-                showNow: true,
-                nowText: "今天",
-                startYear: 2017, //开始年份
-                endYear: currYear+1, //结束年份
-                stepMinute: defaultData&&defaultData.stepMinute ? defaultData.stepMinute :1,
-                onSelect:function(valueText,inst){
-                    if(callback) callback(valueText,inst);
-                }
-            };
-            var optDateTime = $.extend(true,opt['datetime'], opt['default']);
-            var optTime = $.extend(true,opt['time'], opt['default']);
-            //timeType对应：date-->日期，time-->时间，'datatime'或''-->日期时间
-            if(timeType === 'date'){
-                $(dom).mobiscroll($.extend(true,opt['date'], opt['default']));
-            }else if(timeType === 'time'){
-                $(dom).mobiscroll(optTime).time(optTime);
-            }else{
-                $(dom).mobiscroll(optDateTime).datetime(optDateTime);
-            }
-        },*/
-        _ajaxFun = function (para) {
-            var preAjaxUrl;
-            if(preAjaxUrl === para.url){ //防止重复请求
-                return;
-            }
-            /*var $ajax = $.ajax({
-                type: para.type,
-                url: para.url,
-                dataType: "json",
-                data: para.data,
-                timeout: 10000,
-                async: para.async,
-                cache : para.cache ? para.cache : false,
-                error: function (errorData) {
-                    para.errorFun ? para.errorFun(errorData) : function () {
-                        _poptip('返回失败，请重试');
-                    };
-                },
-                success: function (successData) {
-                    if(!successData.success){
-                        _poptip('请求失败，请重试');
-                        return;
-                    }
-                    if (successData.errorCode === 0 && successData.data) {
-                        var resultData = typeof(successData.data)==='string' ? JSON.parse(successData.data) : successData.data;
-                        para.successFun ? para.successFun(resultData) : function () {
-                            _poptip('操作成功');
-                        }
-                    } else if (successData.code===999) {
-                        _poptip('操作失败，请重试');
-                    } else {
-                        _poptip(successData.code);
-                    }
-                },
-                complete: function (XMLHttpRequest, status) {
-                    preAjaxUrl = para.url;
-                    if (status === 'timeout') {
-                        $ajax.abort(); //取消请求
-                        _poptip('请求超时，请重试');
-                    }
-                    if(para.completeFun) para.completeFun();
-                }
-            });
-            return $ajax;*/
         },
         /*_loadMoreData = function (callback) {
             $(window).bind('scroll',function () {
@@ -340,7 +254,7 @@ common.commonFun = (function () {
                         console.error('获取用户信息失败，请重试');
                     }
                 };
-                _ajaxFun(para);
+                //_ajaxFun(para);
             }
         },
         _fillCacheData = function (moduleData,checkForm,addJourney,callback,callbackUl) {
@@ -398,7 +312,6 @@ common.commonFun = (function () {
     return {
         mobileSelect: _mobileSelect,
         //dateTimePicker: _dateTimePicker,
-        ajaxFun: _ajaxFun,
         //switchTab: _switchTab,
         //listenReturnBtn: _listenReturnBtn,
         //checkFun: _checkFun,
