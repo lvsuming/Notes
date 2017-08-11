@@ -37,16 +37,20 @@
   margin-left: .5rem;
   background: url("./images/icon-tip-business.png") no-repeat center/100%; }
 
-.btn-xiecheng {
-  width: 8rem;
-  height: 4rem;
-  border: 2px solid #5278AC;
-  float: left;
-  margin: .5rem 1rem .5rem 0;
-  text-align: center;
-  line-height: 4rem;
-  border-radius: 4rem;
-  color: #5278AC;
+.xiecheng {
+  line-height: 20px;
+  .btn {
+    width: 3rem;
+    height: 1.5rem;
+    border: 1px solid #5278AC;
+    float: left;
+    margin: .5rem 1rem .5rem 0;
+    text-align: center;
+    line-height: 1.5rem;
+    border-radius: 2rem;
+    color: #5278AC;
+    box-sizing: content-box;
+  }
 }
 .business-status{
   width: 152px;
@@ -89,4 +93,16 @@
 }
 .businessstep .step-2:before{
   background-position: 0 -60px;
+}
+
+.createDetails dl{
+  width: 100%;
+  dt{
+    width: 30%;
+    float:left;
+  }
+  dd{
+    width: 70%;
+    float:left;
+  }
 }
