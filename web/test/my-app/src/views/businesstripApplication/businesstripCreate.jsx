@@ -26,21 +26,18 @@ class Article extends React.Component{
 class RadioSwitch extends React.Component{
     constructor(props){
         super(props);
-        this.state = {
-            isEmergency : false
-        }
     }
     radioSwitch(){
         let data = this.props.data;
-        data.businesstripCreate.isEmergency = !data.businesstripCreate.isEmergency;
+        data.isEmergency = (!data.isEmergency || data.isEmergency==='false') ? true : false;
         this.setState({
             data : data
         });
         this.props.saveCacheData();
     }
     render(){
-        let isEmergency = this.props.data.businesstripCreate.isEmergency;
-        return <span id="fd_isEmergency" ref="fd_isEmergency" className={"icon-switch fl "+((isEmergency && isEmergency!='false')?'selected':'')} onClick={this.radioSwitch.bind(this)}></span>
+        let isEmergency = this.props.data.isEmergency;
+        return <span id="fd_isEmergency" ref="fd_isEmergency" className={"icon-switch fl "+(isEmergency?'selected':'')} onClick={this.radioSwitch.bind(this)}></span>
     }
 }
 class BusinesstripDetails extends React.Component{
@@ -50,7 +47,7 @@ class BusinesstripDetails extends React.Component{
     render(){
         let self=this;
         return (<div className="createDetails">
-            {self.props.data.map((item,index) => {
+            {self.props.data.businesstripHotel.map((item,index) => {
                 return <div key={index} className="row clr">
                     <dl><dt>预定信息</dt><dd>{item.fd_hotel_reserve_type.value.fdName||''}</dd></dl>
                     <dl><dt>预定酒店</dt><dd>{item.fd_hotel_type.value.fdName||item.fd_hotel_name.value||''}</dd></dl>
@@ -64,58 +61,43 @@ class BusinesstripDetails extends React.Component{
 class Page extends React.Component{
     constructor(){
         super();
+        let cacheData = sessionStorage.cacheData ? JSON.parse(decodeURIComponent(sessionStorage.cacheData)): {};
         this.state = {
             data: {
-                businesstripCreate : {
-                    fd_company : {},
-                    isEmergency : 'false',
-                },
-                businesstripTranfic : [],
-                businesstripHotel : []
+                fd_company : base.isEmptyObject(cacheData) ? {} : cacheData.fd_company,
+                isEmergency : base.isEmptyObject(cacheData) ? false : ((cacheData.isEmergency && cacheData.isEmergency!=='false') ? true : false),
+                businesstripApplication : base.isEmptyObject(cacheData) ? {} : cacheData.businesstripApplication,
+                businesstripTranfic : base.isEmptyObject(cacheData) ? [] : cacheData.businesstripTranfic,
+                businesstripHotel : base.isEmptyObject(cacheData) ? [] : cacheData.businesstripHotel
             },
             timeOutHandler: null,
             isSubmit : false
         }
     }
     saveCacheData() {
-        var cacheData = sessionStorage.cacheData ? JSON.parse(decodeURIComponent(sessionStorage.cacheData)): {};
-        cacheData.timestamp = Date.now();
-        cacheData.businesstripCreate = this.state.data.businesstripCreate;
+        let stateData = this.state.data;
+        stateData.timestamp = Date.now();
         clearTimeout(this.state.timeOutHandler);
         this.state.timeOutHandler = setTimeout(() => {
-            sessionStorage.cacheData = JSON.stringify(cacheData);
+            sessionStorage.cacheData = JSON.stringify(stateData);
         },500);
         if(!this.checkForm(false)) return;
     }
-    getSessionData(){
-        let cacheData = sessionStorage.cacheData ? JSON.parse(decodeURIComponent(sessionStorage.cacheData)): {},
-            businesstripCreateData = cacheData ? cacheData.businesstripCreate : {},
-            businesstripTranficData = cacheData ? cacheData.businesstripTranfic : [],
-            businesstripHotelData = cacheData ? cacheData.businesstripHotel : [],
-            fd_company = businesstripCreateData ? businesstripCreateData.fd_company : '';
-        if(fd_company || businesstripCreateData || businesstripTranficData || businesstripHotelData){
-            let data = this.state.data;
-            if(businesstripCreateData) data.businesstripCreate = businesstripCreateData;
-            if(businesstripTranficData) data.businesstripTranfic = businesstripTranficData;
-            if(businesstripHotelData) data.businesstripHotel = businesstripHotelData;
-            this.setState({data:data});
-        }
-    }
     bindTravellerDept(){
-        var resultData = [{"fdId":"14c130bcc5929db071a3b734102943ff","fdName":"深圳市XXXX服务有限公司","type":2,"fdNo":"C00","parentId":"14c130bcfbe208754e430764bc283ee7","parentName":"XXXX","imgUrl":""},{"fdId":"14c325e2e968c8904526de344d3a7324","fdName":"深圳市XXXX网络技术有限公司","type":2,"fdNo":"C30","parentId":"14c130bcfbe208754e430764bc283ee7","parentName":"XXXX","imgUrl":""},{"fdId":"14c130bcc6c515a751fe33e4e56ad53d","fdName":"XXXX有限公司","type":2,"fdNo":"C20","parentId":"14c130bcfbe208754e430764bc283ee7","parentName":"XXXX","imgUrl":""},{"fdId":"15c4061d9c325f230dc309b439295bf4","fdName":"深圳市云智融科技有限公司","type":2,"fdNo":"C80","parentId":"14c130bcfbe208754e430764bc283ee7","parentName":"XXXX","imgUrl":""},{"fdId":"15a70e45c38e8618c6dfe3c4cccb1bed","fdName":"dept外包员工","type":2,"fdNo":"dept外包员工","parentId":"14c130bcfbe208754e430764bc283ee7","parentName":"XXXX","imgUrl":""},{"fdId":"158730edfd6e9e24d31dbed4ecbb252b","fdName":"武汉XXXX科技有限公司","type":2,"fdNo":"C50","parentId":"14c130bcfbe208754e430764bc283ee7","parentName":"XXXX","imgUrl":""},{"fdId":"14c130bcfb2e9efb4a864804c968cb53","fdName":"深圳市XXXX科技有限公司","type":2,"fdNo":"C34","parentId":"14c130bcfbe208754e430764bc283ee7","parentName":"XXXX","imgUrl":""}];
-        var travellerDeptPara = {
+        let self=this,
+            resultData = [{"fdId":"14c130bcc5929db071a3b734102943ff","fdName":"深圳市XXXX服务有限公司","type":2,"fdNo":"C00","parentId":"14c130bcfbe208754e430764bc283ee7","parentName":"XXXX","imgUrl":""},{"fdId":"14c325e2e968c8904526de344d3a7324","fdName":"深圳市XXXX网络技术有限公司","type":2,"fdNo":"C30","parentId":"14c130bcfbe208754e430764bc283ee7","parentName":"XXXX","imgUrl":""},{"fdId":"14c130bcc6c515a751fe33e4e56ad53d","fdName":"XXXX有限公司","type":2,"fdNo":"C20","parentId":"14c130bcfbe208754e430764bc283ee7","parentName":"XXXX","imgUrl":""},{"fdId":"15c4061d9c325f230dc309b439295bf4","fdName":"深圳市云智融科技有限公司","type":2,"fdNo":"C80","parentId":"14c130bcfbe208754e430764bc283ee7","parentName":"XXXX","imgUrl":""},{"fdId":"15a70e45c38e8618c6dfe3c4cccb1bed","fdName":"dept外包员工","type":2,"fdNo":"dept外包员工","parentId":"14c130bcfbe208754e430764bc283ee7","parentName":"XXXX","imgUrl":""},{"fdId":"158730edfd6e9e24d31dbed4ecbb252b","fdName":"武汉XXXX科技有限公司","type":2,"fdNo":"C50","parentId":"14c130bcfbe208754e430764bc283ee7","parentName":"XXXX","imgUrl":""},{"fdId":"14c130bcfb2e9efb4a864804c968cb53","fdName":"深圳市XXXX科技有限公司","type":2,"fdNo":"C34","parentId":"14c130bcfbe208754e430764bc283ee7","parentName":"XXXX","imgUrl":""}],
+            travellerDeptPara = {
             trigger : 'fd_company',
             title : '公司名称',
             dataArr: resultData,
             callback:function(indexArr, data){
                 if(data && data.length>0){
-                    var fdId = data[data.length-1].fdId,
-                        fdName = data[data.length-1].fdName,
-                        obj = {
-                            fdId:fdId,
-                            fdName:fdName
-                        };
-                    $('input[name=fd_company]').value = fdId;
+                    let stateData = self.state.data;
+                    stateData.fd_company = {
+                        fdId: data[0].fdId,
+                        fdName: data[0].fdName
+                    };
+                    self.saveCacheData();
                 }
             }
         };
@@ -124,21 +106,18 @@ class Page extends React.Component{
         }
     }
     checkForm(isPrompt) {
-        var flag = true,
+        let flag = true,
             tips = '',
-            content = '';
-        let data = this.state.data;
-        for(let x in data){
-            if(x==='timestamp') continue;
-            if(!data[x]){
-                flag=false;
-                return;
-            }
-        }
-        if(!data.businesstripCreate || !data.businesstripTranfic || !data.businesstripHotel) flag = false;
+            data = this.state.data;
+        if(!data.fd_company
+            || base.isEmptyObject(data.businesstripApplication)
+            || data.businesstripTranfic.length===0
+            || data.businesstripHotel.length===0)
+            flag = false;
+
         if(isPrompt && tips) alert(tips+'不能为空');
-        else if(isPrompt && !data.businesstripCreate.fd_company) alert('请先选择公司');
-        else if(isPrompt && !data.businesstripCreate) alert('请先填写出差详情');
+        else if(isPrompt && !data.fd_company) alert('请先选择公司');
+        else if(isPrompt && data.businesstripApplication) alert('请先填写出差详情');
         else if(isPrompt && data.businesstripTranfic.length===0) alert('请先填写交通预定');
         else if(isPrompt && data.businesstripHotel.length===0) alert('请先填写酒店预定');
 
@@ -151,9 +130,7 @@ class Page extends React.Component{
     }
     submitForm(){
         if(!this.checkForm(true)) return;
-    }
-    componentWillMount(){
-        this.getSessionData();
+        let dataSubmit = {};
     }
     componentDidMount(){
         this.bindTravellerDept();
@@ -163,14 +140,14 @@ class Page extends React.Component{
             <section className="mb9 block">
                 <UserInfo></UserInfo>
                 <div className="noticebar"></div>
-                <Row title="公司名称" name="fd_company" readOnly="true" className="blue" isValid="true"></Row>
+                <Row title="公司名称" name="fd_company" readOnly="true" className="blue" isValid="true" value={this.state.data.fd_company ? this.state.data.fd_company.fdName : ''}></Row>
                 <Article title="出差详情" link="/businesstripCreate/businesstripApplication"></Article>
                 <div className="row clr hide" id="businesstripApplicationList"></div>
                 <Article title="交通预定" link="/businesstripCreate/businesstripTraffic"></Article>
                 <div className="row clr hide" id="businesstripTrafficList"></div>
                 <Article title="酒店预定" link="/businesstripCreate/businesstripHotel"></Article>
                 {/*<div className="row clr hide" id="businesstripHotelList"></div>*/}
-                <BusinesstripDetails ref="businesstripHotelList" data={this.state.data.businesstripHotel}></BusinesstripDetails>
+                <BusinesstripDetails ref="businesstripHotelList" data={this.state.data}></BusinesstripDetails>
                 <div className="noticebar"></div>
                 <div className="row flex">
                     <span>是否紧急</span>

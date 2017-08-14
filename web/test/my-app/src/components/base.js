@@ -134,8 +134,9 @@ var baseTool = function () {
     },
     _isEmptyObject = function (e) {
         var t;
-        for (t in e)
+        for (t in e){
             return !1;
+        }
         return !0
     },
     _serialize = function (selector) {

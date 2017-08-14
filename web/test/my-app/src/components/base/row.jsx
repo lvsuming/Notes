@@ -56,16 +56,16 @@ class Row extends React.Component{
     render(){
         var inputDom;
         if(this.props.type==='datetime'){
-            inputDom = <DatePicker showTime={{ format: 'HH:mm' }} format="YYYY-MM-DD HH:mm" defaultValue={moment(this.props.value, 'YYYY-MM-DD HH:mm')} onChange={this.onChange.bind(this)} placeholder="请选择(必填)"/>
+            inputDom = <DatePicker showTime={{ format: 'HH:mm' }} format="YYYY-MM-DD HH:mm" defaultValue={moment(this.props.value, 'YYYY-MM-DD HH:mm')} className={this.props.className || ''} onChange={this.onChange.bind(this)} placeholder="请选择(必填)"/>
         }else if(this.props.type==='date'){
-            inputDom = <DatePicker format="YYYY-MM-DD" defaultValue={moment(this.props.value, 'YYYY-MM-DD')} onChange={this.onChange.bind(this)} placeholder="请选择(必填)"/>
+            inputDom = <DatePicker format="YYYY-MM-DD" defaultValue={moment(this.props.value, 'YYYY-MM-DD')} className={this.props.className || ''} onChange={this.onChange.bind(this)} placeholder="请选择(必填)"/>
         }else if(this.props.selectMore){
-            inputDom = <input type={this.props.type || 'text'} id={this.props.name+(this.props['data-num'] || '')} ref={this.props.name+(this.props['data-num'] || '')} name={this.props.name || ''} value={this.props.value ? (typeof(this.props.value)==='string'?this.props.value:(this.props.value.value||this.props.value.fdName)) : ''} className={"grid-2 align-right"+this.state.selectMore} placeholder={this.props.placeholder || '请选择(必填)'} onClick={this.bindHandle.bind(this)} onChange={this.onChange.bind(this)}/>
+            inputDom = <input type={this.props.type || 'text'} id={this.props.name+(this.props['data-num'] || '')} ref={this.props.name+(this.props['data-num'] || '')} name={this.props.name || ''} value={this.props.value ? (typeof(this.props.value)==='string'?this.props.value:(this.props.value.value||this.props.value.fdName)) : ''} className={"grid-2 align-right "+this.state.selectMore+' '+this.props.className} placeholder={this.props.placeholder || '请选择(必填)'} onClick={this.bindHandle.bind(this)} onChange={this.onChange.bind(this)}/>
         }else{
-            inputDom = <input type={this.props.type || 'text'} id={this.props.name+(this.props['data-num'] || '')} ref={this.props.name+(this.props['data-num'] || '')} name={this.props.name || ''} value={this.props.value || ''} className={"grid-2 align-right"+this.state.selectMore} placeholder={this.props.placeholder || '请选择(必填)'} onClick={this.bindHandle.bind(this)} onChange={this.onChange.bind(this)}/>
+            inputDom = <input type={this.props.type || 'text'} id={this.props.name+(this.props['data-num'] || '')} ref={this.props.name+(this.props['data-num'] || '')} name={this.props.name || ''} value={this.props.value || ''} className={"grid-2 align-right "+this.state.selectMore+' '+this.props.className} placeholder={this.props.placeholder || '请选择(必填)'} onClick={this.bindHandle.bind(this)} onChange={this.onChange.bind(this)}/>
         }
         return <div className={"row flex "+(this.props.isValid?'':'hide')}>
-            <label className={this.props.className || ''} htmlFor={this.props.name || ''}>{this.props.title || ''}</label>
+            <label htmlFor={this.props.name || ''}>{this.props.title || ''}</label>
             {inputDom}
         </div>
     }

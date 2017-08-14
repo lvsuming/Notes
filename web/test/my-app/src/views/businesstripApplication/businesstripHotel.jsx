@@ -112,31 +112,31 @@ class Article extends React.Component{
     }
     changeInTime(num,date,dateString){
         if(!date) return;
-        let inTime = new Date(date._d || dateString).format('yyyy-MM-dd hh:mm:ss'),
+        let inTime = new Date(date._d || dateString).format('yyyy-MM-dd hh:mm'),
             outTime;
         outTime = this.props.data[num-1].fd_out_time.value;
         this.calcStayDays(inTime,outTime,num);
-        let stateData = this.props.data[num-1];
+        let stateData = JSON.parse(JSON.stringify(this.props.data[num-1]));
         stateData.fd_in_time.value = inTime;
-        this.props.setRootState(this.props.data);
+        this.props.setRootState(stateData);
     }
     changeOutTime(num,date,dateString){
         if(!date) return;
-        var outTime = new Date(date._d || dateString).format('yyyy-MM-dd hh:mm:ss'),
+        var outTime = new Date(date._d || dateString).format('yyyy-MM-dd hh:mm'),
             inTime;
         inTime = this.props.data[num-1].fd_in_time.value;
         this.calcStayDays(inTime,outTime,num);
-        let stateData = this.props.data[num-1];
+        let stateData = JSON.parse(JSON.stringify(this.props.data[num-1]));
         stateData.fd_out_time.value = outTime;
-        this.props.setRootState(this.props.data);
+        this.props.setRootState(stateData);
     }
     calcStayDays(inTime,outTime,num){
         if(!inTime || !outTime) return;
         var stayTime = new Date(outTime).getTime()-new Date(inTime).getTime(),
             stayDays = Math.floor(stayTime/1000/86400);
-        let stateData = this.props.data[num-1];
+        let stateData = JSON.parse(JSON.stringify(this.props.data[num-1]));
         stateData.fd_days.value = stayDays;
-        this.props.setRootState(this.props.data);
+        this.props.setRootState(stateData);
     }
     disabledDate(num,current) {
         let inTime = this.props.data[num-1].fd_in_time.value;
@@ -147,7 +147,7 @@ class Article extends React.Component{
         var index = dom.closest('form').id.replace('form','');
         index = Number(index)-1;
         if(dom.type!=='hidden'){
-            let data = this.props.data,
+            let data = JSON.parse(JSON.stringify(this.props.data)),
                 name = dom.name,
                 value = dom.value;
             data[index][name].value = value;

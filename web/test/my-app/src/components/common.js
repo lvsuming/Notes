@@ -82,14 +82,11 @@ common.commonFun = (function () {
                     },
                     callback: function (indexArr, data) {
                         var resultData = data[data.length - 1],
-                            triggerIdDom = document.getElementById(para.trigger),
-                            triggerInputDom = document.querySelector('input[name=' + para.trigger + ']');
+                            triggerIdDom = document.getElementById(para.trigger);
                         if (typeof(resultData) === 'object') {
                             if (triggerIdDom) triggerIdDom.value = resultData.value || resultData.fdName || '';
-                            if (triggerInputDom) triggerInputDom.value = resultData.id || resultData.fdId || '';
                         } else if (typeof(resultData) === 'string' || typeof(resultData) === 'number' || typeof(resultData) === 'boolean') {
                             if (triggerIdDom) triggerIdDom.value = resultData;
-                            if (triggerInputDom) triggerInputDom.value = resultData;
                         }
                         if (para.callback) para.callback(indexArr, data);
                     }
