@@ -18,7 +18,7 @@ html, body {
 
 body {
   -webkit-tap-highlight-color: rgba(255, 0, 0, 0);
-  font: 32px/1.5 "Helvetica Neue", Helvetica, "Droid sans fallback", "Microsoft YaHei", Arial, sans-serif;
+  font: 16px/1.5 "Helvetica Neue", Helvetica, "Droid sans fallback", "Microsoft YaHei", Arial, sans-serif;
   margin: 0 auto;
   background-color: #f3f3f3!important;
   -webkit-text-size-adjust: 100% !important;
@@ -466,4 +466,8 @@ button:not(:last-of-type),button:not(:first-of-type){
 */
 .error{
   border: 1px solid red;
+}
+
+.ant-calendar{
+  font-size: 2rem!important;
 }

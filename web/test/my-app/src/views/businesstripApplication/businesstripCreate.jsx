@@ -51,7 +51,7 @@ class BusinesstripDetails extends React.Component{
                 return <div key={index} className="row clr">
                     <dl><dt>预定信息</dt><dd>{item.fd_hotel_reserve_type.value.fdName||''}</dd></dl>
                     <dl><dt>预定酒店</dt><dd>{item.fd_hotel_type.value.fdName||item.fd_hotel_name.value||''}</dd></dl>
-                    <dl><dt>入住时间</dt><dd>{(new Date(item.fd_in_time.value).format('yyyy-MM-dd hh:mm')||'') +' 至 '+ (new Date(item.fd_out_time.value).format('yyyy-MM-dd hh:mm')||'')}</dd></dl>
+                    <dl><dt>入住时间</dt><dd>{item.fd_in_time.value?new Date(item.fd_in_time.value).format('yyyy-MM-dd hh:mm'):''} 至 {item.fd_out_time.value?new Date(item.fd_out_time.value).format('yyyy-MM-dd hh:mm'):''}</dd></dl>
                     <dl><dt>入住城市</dt><dd>{item.fd_city.value||''}</dd></dl>
                 </div>
             })}

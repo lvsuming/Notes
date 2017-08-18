@@ -1,0 +1,26 @@
+{ "plugins": [
+    "transform-runtime",
+    "transform-decorators-legacy",
+    "transform-class-properties",
+    ["import",
+      [
+        {
+          "libraryName": "antd",
+          "libraryDirectory": "lib",
+          "style":"css"
+        },
+        {
+          "libraryName": "antd-mobile",
+          "libraryDirectory": "lib",
+          "style":"css"
+        }
+      ]
+    ]
+  ],
+  "presets": [
+    "es2015",
+    "react",
+    "stage-2"
+  ],
+  "comments": false
+}

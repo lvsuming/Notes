@@ -1,10 +1,9 @@
-import React from 'react';
+import React,{ Component } from 'react';
 import PropTypes from 'prop-types';
 import Row from '../../components/base/row.jsx';
 import { DatePicker } from 'antd';
 import moment from 'moment';
 import 'moment/locale/zh-cn';
-moment.locale('zh-cn');
 
 class Page extends React.Component{
     constructor(){
@@ -20,7 +19,7 @@ class Page extends React.Component{
                 fd_travel_days : {'value':''},
                 fd_reason : {'value':''}
             },
-            timeOutHandler : null,
+            sValue: ['2013', '春'],
             isSubmit : false
         }
     }
@@ -37,10 +36,9 @@ class Page extends React.Component{
         var cacheData = {};
         cacheData.timestamp = Date.now();
         cacheData.businesstripApplication = obj;
-        clearTimeout(this.state.timeOutHandler);
-        this.state.timeOutHandler = setTimeout(() => {
+        //setTimeout(() => {
             sessionStorage.cacheData = JSON.stringify(cacheData);
-        },500);
+        //}, 500);
         if(!this.checkForm(false)) return;
     }
     checkForm(isPrompt) {
