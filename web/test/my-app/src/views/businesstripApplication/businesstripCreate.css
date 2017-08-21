@@ -1,4 +1,27 @@
 @charset "UTF-8";
+body {
+  background-color: #efefef; }
+
+.blue {
+  color: #4f77ab; }
+
+.bg-blue {
+  color: #FFF;
+  background-color: #118EEA; }
+
+form input, form select {
+  text-align: right; }
+
+form a input {
+  width: 100% !important; }
+
+form .ant-calendar-picker-icon:after {
+  content: ''; }
+
+.row label {
+  white-space: nowrap;
+  color: #666; }
+
 .icon-switch {
   width: 2.5rem;
   height: 1.4rem;
@@ -102,3 +125,9 @@
   .createDetails dl dd {
     width: 70%;
     float: left; }
+
+.ant-calendar-picker input {
+  line-height: 1.5; }
+
+.am-list-header {
+  color: #4f77ab !important; }

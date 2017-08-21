@@ -38,9 +38,6 @@ class Article extends React.Component{
             data : this.props.data
         }
     }
-    static propTypes = {
-        data: PropTypes.object || null,
-    };
     bindTravellerType(){
         var resultData = [
                 {id:1,value:'行政人员预定'},
@@ -133,6 +130,9 @@ class Article extends React.Component{
         )
     }
 }
+Article.propTypes = {
+    data: PropTypes.object || null,
+};
 class Articles extends React.Component{
     constructor(props){
         super(props);

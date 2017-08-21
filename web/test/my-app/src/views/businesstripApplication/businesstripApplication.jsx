@@ -23,9 +23,6 @@ class Page extends React.Component{
             isSubmit : false
         }
     }
-    static propTypes = {
-        data: PropTypes.object || null,
-    };
     setRootState(obj) {
         this.setState({
             data : obj
@@ -135,4 +132,7 @@ class Page extends React.Component{
         </form>
     }
 }
+Page.propTypes = {
+        data: PropTypes.object || null,
+    };
 export default Page;

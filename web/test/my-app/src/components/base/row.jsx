@@ -15,12 +15,6 @@ class Row extends React.Component{
             link : this.props.link
         }
     }
-    static propTypes = {
-        title: PropTypes.string,
-        name: PropTypes.string,
-        placeholder: PropTypes.string,
-        readOnly: PropTypes.boolean || PropTypes.string
-    };
     componentDidMount(){
         var refs = this.props['data-num'] ? this.state.name+this.props['data-num'] : this.state.name,
             dom = this.refs[refs],
@@ -70,5 +64,11 @@ class Row extends React.Component{
         </div>
     }
 }
+Row.propTypes = {
+    title: PropTypes.string,
+    name: PropTypes.string,
+    placeholder: PropTypes.string,
+    readOnly: PropTypes.boolean || PropTypes.string
+};
 export default Row;
 

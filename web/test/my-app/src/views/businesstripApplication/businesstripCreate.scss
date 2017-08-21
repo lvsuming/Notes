@@ -1,3 +1,4 @@
+@import "../../components/base/index.scss";
 .icon-switch{
   width: 2.5rem;
   height: 1.4rem;
@@ -105,4 +106,10 @@
     width: 70%;
     float:left;
   }
+}
+.ant-calendar-picker input{
+  line-height: 1.5;
+}
+.am-list-header{
+  color: $blue!important;
 }

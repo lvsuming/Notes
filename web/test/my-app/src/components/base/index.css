@@ -1,29 +1,18 @@
 body {
   background-color: #efefef; }
 
+.blue {
+  color: #4f77ab; }
+
+.bg-blue {
+  color: #FFF;
+  background-color: #118EEA; }
+
 form input, form select {
-  width: 55%;
-  line-height: 1.4rem;
-  float: right;
-  margin-right: -.5rem;
-  -webkit-box-sizing: border-box;
-  border: none;
-  -webkit-appearance: none;
-  background-color: transparent;
-  outline: medium;
-  text-align: right;
-  padding-right: 1.2rem;
-  box-sizing: border-box;
-  text-overflow: ellipsis; }
+  text-align: right; }
 
 form a input {
   width: 100% !important; }
-
-form input.ant-input {
-  border: none;
-  padding-right: 1.2rem;
-  color: #000;
-  background: url("./images/icon-arrow_right.png") no-repeat right center #fff; }
 
 form .ant-calendar-picker-icon:after {
   content: ''; }
@@ -31,7 +20,3 @@ form .ant-calendar-picker-icon:after {
 .row label {
   white-space: nowrap;
   color: #666; }
-
-.select_bg {
-  padding-right: 1.2rem;
-  background: url("./images/icon-arrow_right.png") no-repeat right center #fff; }

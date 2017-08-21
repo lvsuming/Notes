@@ -3,20 +3,25 @@ import PropTypes from 'prop-types';
 import base,{$} from '../../components/base';
 import common from '../../components/common';
 import Row from '../../components/base/row.jsx';
-import { DatePicker, Form } from 'antd';
+import { DatePicker, Affix, Form  } from 'antd';
 import 'antd/lib/date-picker/style/index.css';
+import 'antd/lib/affix/style/index.css';
 import moment from 'moment';
 import 'moment/locale/zh-cn';
-
 import Button from 'antd-mobile/lib/button';
 import WingBlank from 'antd-mobile/lib/wing-blank';
+import Picker from 'antd-mobile/lib/picker';
+import List from 'antd-mobile/lib/list';
+import InputItem from 'antd-mobile/lib/input-item';
 import 'antd-mobile/lib/button/style/index.css';
 import 'antd-mobile/lib/wing-blank/style/index.css';
-import district from './district.min';
-import { Picker, List, WhiteSpace, InputItem } from 'antd-mobile';
 import 'antd-mobile/lib/picker/style/index.css';
 import 'antd-mobile/lib/list/style/index.css';
-import 'antd-mobile/lib/white-space/style/index.css';
+import 'antd-mobile/lib/input-item/style/index.css';
+
+import district from './district.min';
+
+const Item = List.Item;
 
 const hotelType = [
     {"value":"1","label":"深圳葵花公寓"},
@@ -32,81 +37,36 @@ class Article extends React.Component{
     constructor(props){
         super(props);
     }
-    static propTypes = {
-        data: PropTypes.object || null,
-    };
-    bindHotelReserveType(){
-        let self=this,
-            i = self.props.num,
-            resultData = [
-                {id:1,value:'携程行政人员预定'},
-                {id:2,value:'协议行政人员预定'},
-                {id:3,value:'自行预定'}
-            ],
-            travellerDeptPara = {
-                trigger : 'fd_hotel_reserve_type'+i,
-                title : '酒店预定类型',
-                dataArr: resultData,
-                callback:(indexArr, data) => {
-                    if(data && data.length>0) {
-                        let fdId = data[data.length - 1].id,
-                            fdName = data[data.length - 1].value,
-                            obj = {
-                                fdId: fdId,
-                                fdName: fdName
-                            };
-                        let stateData = self.props.data[i-1];
-                        stateData.fd_hotel_reserve_type.value = obj;
-                        switch (fdId){
-                            case 1:
-                            case 3:
-                                stateData.fd_hotel_name.isValid = true;
-                                stateData.fd_price.isValid = true;
-                                stateData.fd_hotel_type.isValid = false;
-                                stateData.fd_days.isValid = false;
-                                break;
-                            case 2:
-                                stateData.fd_hotel_name.isValid = false;
-                                stateData.fd_price.isValid = false;
-                                stateData.fd_hotel_type.isValid = true;
-                                stateData.fd_days.isValid = true;
-                                break;
-                            default:
-                                break;
-                        }
-                        self.props.setRootState(self.props.data);
-                    }
-                }
-            };
-        common.commonFun.mobileSelect(travellerDeptPara);
-    };
     componentDidMount(){
     }
-    changeInTime(num,date,dateString){
+    changeInTime(date,dateString){
         if(!date) return;
         let inTime = new Date(date._d || dateString).format('yyyy-MM-dd hh:mm'),
-            outTime;
+            outTime,
+            num = this.props.num;
         outTime = this.props.data[num-1].fd_out_time.value;
         this.calcStayDays(inTime,outTime,num);
         let stateData = JSON.parse(JSON.stringify(this.props.data[num-1]));
         stateData.fd_in_time.value = inTime;
         this.props.setRootState(stateData);
     }
-    changeOutTime(num,date,dateString){
+    changeOutTime(date,dateString){
         if(!date) return;
         var outTime = new Date(date._d || dateString).format('yyyy-MM-dd hh:mm'),
-            inTime;
+            inTime,
+            num = this.props.num;
         inTime = this.props.data[num-1].fd_in_time.value;
         this.calcStayDays(inTime,outTime,num);
         let stateData = JSON.parse(JSON.stringify(this.props.data[num-1]));
         stateData.fd_out_time.value = outTime;
         this.props.setRootState(stateData);
     }
-    calcStayDays(inTime,outTime,num){
+    calcStayDays(inTime,outTime){
         if(!inTime || !outTime) return;
-        var stayTime = new Date(outTime).getTime()-new Date(inTime).getTime(),
-            stayDays = Math.floor(stayTime/1000/86400);
-        let stateData = JSON.parse(JSON.stringify(this.props.data[num-1]));
+        let stayTime = new Date(outTime).getTime()-new Date(inTime).getTime(),
+            stayDays = Math.floor(stayTime/1000/86400),
+            num = this.props.num,
+            stateData = JSON.parse(JSON.stringify(this.props.data[num-1]));
         stateData.fd_days.value = stayDays;
         this.props.setRootState(stateData);
     }
@@ -126,8 +86,9 @@ class Article extends React.Component{
             this.props.setRootState(data);
         }
     }*/
-    changeCity(value,num){
-        let data = JSON.parse(JSON.stringify(this.props.data));
+    changeCity(value){
+        let data = JSON.parse(JSON.stringify(this.props.data)),
+            num = this.props.num;
         district.forEach((item,index)=>{
             if(value[0] && value[0]===item.value){
                 district[index].children.forEach((item2,index2)=>{
@@ -142,9 +103,10 @@ class Article extends React.Component{
             }
         });
     }
-    saveInputValue(v,num,name){
+    saveInputValue(v,name){
         let data = JSON.parse(JSON.stringify(this.props.data)),
-            value = {};
+            value = {},
+            num = this.props.num;
         switch (name){
             case 'fd_hotel_reserve_type':
                 hotelReserveType.forEach((item,index)=>{
@@ -163,19 +125,15 @@ class Article extends React.Component{
             data = this.props.data[num-1];
         if(num!==1) domIconDel=<span className="icon-del" onClick={this.props.delJourney.bind(this)}></span>;
         return(
+            <div>
             <form id={'form'+num} style={{marginBottom: 10}}>
-                <div className="row flex">
-                    <span className="blue">行程单 ({num})</span>
-                    {domIconDel}
-                </div>
-
                 <div className={"row xiecheng "+(data.fd_hotel_reserve_type.value&&1===data.fd_hotel_reserve_type.value.fdId?'':'hide')}>
                     <a href="http://m.ctrip.com/html5/">
                         <span className="btn">携程</span>
                     </a>
                     <h6 className="blue">（选择携程预订，需要进入  携程官网  查找标准酒店，再填写申请单，审批后由行政人员预订。）</h6>
                 </div>
-                <Row title="预定酒店名称" name="fd_hotel_name" isValid={data.fd_hotel_name.isValid} placeholder="" data-num={num} onChange={this.saveInputValue.bind(this)} value={data.fd_hotel_name.value}></Row>
+                <Row title="预定酒店名称" name="fd_hotel_name" isValid={data.fd_hotel_name.isValid} placeholder="" onChange={this.saveInputValue.bind(this)} value={data.fd_hotel_name.value}></Row>
                 {/*
                  <div className="row flex">
                  <label>预定类型</label>
@@ -183,42 +141,73 @@ class Article extends React.Component{
                  </div>
                 <Row title="房费价格" type="number" name="fd_price" isValid={data.fd_price.isValid} placeholder="" data-num={num} onChange={this.saveInputValue.bind(this)} value={data.fd_price.value}></Row>
                  <Row title="入住人" name="fd_name" isValid='true' placeholder="请填写(必填)" data-num={num} onChange={this.saveInputValue.bind(this)} value={data.fd_name.value} readOnly="true" selectMore="true"></Row>*/}
-                <Picker extra="请选择(可选)" cols={1} data={hotelReserveType} title="预定类型"
-                        onChange={v => this.saveInputValue(v,num,'fd_hotel_reserve_type')} value={data.fd_hotel_reserve_type?[data.fd_hotel_reserve_type.value]:[]}>
-                    <List.Item arrow="horizontal">预定类型</List.Item>
-                </Picker>
-                 <InputItem
-                    clear
-                    type="number"
-                    placeholder="请填写(必填)"
-                    updatePlaceholder="true"
-                    defaultValue={data.fd_price.value}
-                >房费价格</InputItem>
-                <InputItem
-                    clear
-                    placeholder="请填写(必填)"
-                    updatePlaceholder="true"
-                    defaultValue={data.fd_name.value}
-                >入住人</InputItem>
-                <Row title="酒店类型" name="fd_hotel_type" isValid={data.fd_hotel_type.isValid} placeholder="" readOnly="true" selectMore="true" data-num={num} onChange={this.saveInputValue.bind(this)} value={data.fd_hotel_type.value}></Row>
-                <Picker extra="请选择(可选)" cols={2} data={district} title="入住城市" onChange={v => this.changeCity(v,num)}  value={[data.fd_city.value[0].value,data.fd_city.value[1].value]}>
-                    <List.Item arrow="horizontal">入住城市</List.Item>
-                </Picker>
-                {/*<Row title="入住时间" type="datetime" name="fd_in_time" placeholder="" readOnly="true" selectMore="true" data-num={num} onChange={this.changeDateTime.bind(this)}></Row>
-                <Row title="退房时间" type="datetime" name="fd_out_time" placeholder="" readOnly="true" selectMore="true" data-num={num} onChange={this.changeDateTime.bind(this)}></Row>*/}
-                <div className="row flex">
-                    <label>入住时间</label>
-                    <DatePicker showTime={{ format: 'HH:mm' }} format="YYYY-MM-DD HH:mm" defaultValue={data.fd_in_time.value ? moment(data.fd_in_time.value, 'YYYY-MM-DD HH:mm') : null} placeholder="请选择(必填)" onOk={this.changeInTime.bind(this,num)}/>
-                </div>
+                <List className="my-list" renderHeader={() => ('行程单 ('+num+')')} >
+                    {domIconDel}
+                    <Picker extra="请选择(可选)" cols={1} data={hotelReserveType} title="预定类型"
+                            onChange={v => this.saveInputValue(v,'fd_hotel_reserve_type')} value={data.fd_hotel_reserve_type?[data.fd_hotel_reserve_type.value]:[]}>
+                        <List.Item arrow="horizontal">预定类型</List.Item>
+                    </Picker>
+                    <InputItem
+                        name="fd_hotel_name"
+                        clear
+                        placeholder="请填写(必填)"
+                        updatePlaceholder="true"
+                        defaultValue={data.fd_hotel_name.value}
+                        onChange={this.saveInputValue.bind(this)}
+                    >预定酒店名称</InputItem>
+                    <InputItem
+                        name="fd_price"
+                        clear
+                        type="number"
+                        placeholder="请填写(必填)"
+                        updatePlaceholder="true"
+                        defaultValue={data.fd_price.value}
+                        onChange={this.saveInputValue.bind(this)}
+                    >房费价格</InputItem>
+                    <InputItem
+                        name="fd_name"
+                        clear
+                        placeholder="请填写(必填)"
+                        updatePlaceholder="true"
+                        defaultValue={data.fd_name.value}
+                        onChange={this.saveInputValue.bind(this)}
+                    >入住人</InputItem>
+                    <Picker name="fd_city" extra="请选择(可选)" cols={2} data={district} title="入住城市" onChange={v => this.changeCity(v)}  value={[data.fd_city.value[0].value,data.fd_city.value[1].value]}>
+                        <List.Item arrow="horizontal">入住城市</List.Item>
+                    </Picker>
+                    <Item arrow="horizontal">
+                        入住时间
+                        <DatePicker name="fd_in_time" showTime={{ format: 'HH:mm' }} format="YYYY-MM-DD HH:mm" defaultValue={data.fd_in_time.value ? moment(data.fd_in_time.value, 'YYYY-MM-DD HH:mm') : null} placeholder="请选择(必填)" onOk={this.changeInTime.bind(this)} style={{float:'right',lineHeight:1.5}}/>
+                    </Item>
+                    <Item arrow="horizontal">
+                        退房时间
+                        <DatePicker name="fd_out_time" showTime={{ format: 'HH:mm' }} format="YYYY-MM-DD HH:mm" defaultValue={data.fd_in_time.value ? moment(data.fd_in_time.value, 'YYYY-MM-DD HH:mm') : null} placeholder="请选择(必填)" onOk={this.changeOutTime.bind(this)} style={{float:'right',lineHeight:1.5}}/>
+                    </Item>
+                    <Picker name="fd_hotel_type" extra="请选择(可选)" cols={1} data={hotelType} title="酒店类型"
+                            onChange={v => this.saveInputValue(v,'fd_hotel_type')} value={data.fd_hotel_type?[data.fd_hotel_type.value]:[]}>
+                        <List.Item arrow="horizontal">酒店类型</List.Item>
+                    </Picker>
+                    <Item name="fd_days" extra="0">
+                        入住天数
+                    </Item>
+                </List>
+
+                {/*<Row title="酒店类型" name="fd_hotel_type" isValid={data.fd_hotel_type.isValid} placeholder="" readOnly="true" selectMore="true" data-num={num} onChange={this.saveInputValue.bind(this)} value={data.fd_hotel_type.value}></Row>
+                <Row title="入住时间" type="datetime" name="fd_in_time" placeholder="" readOnly="true" selectMore="true" data-num={num} onChange={this.changeDateTime.bind(this)}></Row>
+                <Row title="退房时间" type="datetime" name="fd_out_time" placeholder="" readOnly="true" selectMore="true" data-num={num} onChange={this.changeDateTime.bind(this)}></Row>
                 <div className="row flex">
                     <label>退房时间</label>
                     <DatePicker showTime={{ format: 'HH:mm' }} format="YYYY-MM-DD HH:mm" defaultValue={data.fd_out_time.value ? moment(data.fd_out_time.value, 'YYYY-MM-DD HH:mm') : null} placeholder="请选择(必填)" onOk={this.changeOutTime.bind(this,num)} disabledDate={this.disabledDate.bind(this,num)}/>
                 </div>
-                <Row title="入住天数" type="number" name="fd_days" isValid={data.fd_days.isValid} placeholder=" " readOnly="true" data-num={num} onChange={this.saveInputValue.bind(this)} value={data.fd_days.value}></Row>
+                <Row title="入住天数" type="number" name="fd_days" isValid={data.fd_days.isValid} placeholder=" " readOnly="true" data-num={num} onChange={this.saveInputValue.bind(this)} value={data.fd_days.value}></Row>*/}
             </form>
+            </div>
         )
     }
 }
+Article.propTypes = {
+    data: PropTypes.object || null,
+};
 class Articles extends React.Component{
     constructor(props){
         super(props);
@@ -320,8 +309,10 @@ class Page extends React.Component{
     render(){
         return <div>
             <Articles data={this.state.data} delJourney={this.delJourney.bind(this)} setRootState={this.setRootState.bind(this)}/>
-            <div className="row addJourney mb9" style={{marginBottom: 9+'rem'}} onClick={this.addJourney.bind(this)}></div>
-            <div className="fixed bg-gray" style={{marginBottom:.5+'rem'}}>
+            <WingBlank size="lg">
+                <Button className="btn" onClick={this.addJourney.bind(this)}>+增加行程单</Button>
+            </WingBlank>
+            <Affix offsetBottom={5+'rem'}>
                 <WingBlank size="lg">
                     {
                         this.state.isSubmit
@@ -329,7 +320,7 @@ class Page extends React.Component{
                             : <Button className="btn" type="primary" disabled onClick={this.submitForm.bind(this)}>确定</Button>
                     }
                 </WingBlank>
-            </div>
+            </Affix>
         </div>
     }
 }
