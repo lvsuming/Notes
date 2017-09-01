@@ -1,6 +1,6 @@
 import 'whatwg-fetch';
 import 'es6-promise';
-import base,{getUrl} from './base';
+import base from './base';
 import mobileSelect from './mobileSelector/js/mobileSelect';
 import './mobileSelector/css/mobileSelect.css';
 //import './mobiscrollTime/js/mobiscroll';
@@ -229,7 +229,7 @@ common.commonFun = (function () {
             var curUserInfo = localStorage.getItem('curUserInfo') ? JSON.parse(localStorage.getItem('curUserInfo')) : {},
                 isHomePage = window.location.href.indexOf('home.jsp')>-1;
             if(personId || base.isEmptyObject(curUserInfo) || (new Date().getTime() - curUserInfo.timestamp)>3600000 || isHomePage){
-                var para = {
+                /*var para = {
                     'type': 'get',
                     'url': getUrl.getCurUserInfo,
                     'data': {
@@ -251,7 +251,7 @@ common.commonFun = (function () {
                         console.error('获取用户信息失败，请重试');
                     }
                 };
-                //_ajaxFun(para);
+                _ajaxFun(para);*/
             }
         },
         _fillCacheData = function (moduleData,checkForm,addJourney,callback,callbackUl) {
@@ -311,7 +311,7 @@ common.commonFun = (function () {
         //dateTimePicker: _dateTimePicker,
         //switchTab: _switchTab,
         //listenReturnBtn: _listenReturnBtn,
-        //checkFun: _checkFun,
+        checkFun: _checkFun,
         poptip: _poptip,
         getCurUserInfo: _getCurUserInfo,
         fillCacheData: _fillCacheData,

@@ -1,4 +1,4 @@
-import React,{ Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import Row from '../../components/base/row.jsx';
 import { DatePicker } from 'antd';

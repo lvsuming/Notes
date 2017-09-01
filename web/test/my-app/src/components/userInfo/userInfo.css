@@ -1,13 +1,8 @@
-.row textarea {
-  width: 100%;
-  min-height: 12rem;
-  margin-left: 2rem;
-  line-height: 2.8rem; }
-
 .row dl {
-  line-height: 1.5rem;
+  line-height: 2em;
   width: 100%;
-  float: left; }
+  float: left;
+  font-size: 0.5rem; }
 
 .row dt {
   width: 30%;
@@ -18,9 +13,7 @@
   float: left; }
 
 .row .head-img {
-  width: 5rem;
-  height: 4rem;
+  width: 2.5rem;
+  height: 2.5rem;
   border-radius: 50%;
-  box-sizing: content-box;
-  margin-top: .2rem;
-  flex-grow: 0; }
+  transform: translate(0, 10%); }

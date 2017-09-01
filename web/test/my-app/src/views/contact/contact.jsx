@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './contact.css';
 import base,{$} from '../../components/base';
 import {makePy} from './jquery.charfirst.pinyin';
@@ -94,8 +94,9 @@ class Contact extends React.Component{
             SortListAll=document.querySelectorAll(".sort_list"),
             SortBox=document.querySelector(".sort_box"),
             SortResultAll = [].slice.call(SortListAll).sort(asc_sort);
-        SortResultAll.map(function (element,index) {
+        SortBox = SortResultAll.map(function (element,index) {
             SortBox.appendChild(element);//按首字母排序
+            return SortBox;
         });
         function asc_sort(a, b) {
             return makePy(b.querySelector('.num_name').innerHTML.charAt(0))[0].toUpperCase() < makePy(a.querySelector('.num_name').innerHTML.charAt(0))[0].toUpperCase() ? 1 : -1;
@@ -103,7 +104,7 @@ class Contact extends React.Component{
 
         var initials = [],
             num=0;
-        [].slice.call(SortList).map(function(element,index) {
+        initials = [].slice.call(SortList).map(function(element,index) {
             var initial = makePy(element.querySelector('.num_name').innerHTML.charAt(0))[0].toUpperCase();
             if(initial>='A'&&initial<='Z'){
                 if (initials.indexOf(initial) === -1)
@@ -111,13 +112,15 @@ class Contact extends React.Component{
             }else{
                 num++;
             }
+            return initials;
         });
-        initials.map(function(value,index) {//添加首字母标签
+        SortBox = initials.map(function(value,index) {//添加首字母标签
             var sortLetter = document.createElement('div');
             sortLetter.className = 'sort_letter';
             sortLetter.id = value;
             sortLetter.innerHTML = value;
             SortBox.append(sortLetter);
+            return SortBox;
         });
 
         if(num!==0){SortBox.append('<div class="sort_letter" id="default">#</div>');}

@@ -21,7 +21,7 @@ class UserInfo extends React.Component{
     render(){
         return <div className="row flex">
             <input type="hidden" name="userId" id="userId"/>
-            <div style={{width: '100%'}}>
+            <div style={{width: '70%'}}>
                 <dl>
                     <dt className="gray-3">提单人</dt><dd>{this.props.fdName}</dd>
                 </dl>

@@ -1,5 +1,5 @@
 import React from 'react';
-import {Router,Route,hashHistory,browserHistory,IndexRoute} from 'react-router';
+import {Router,Route,hashHistory} from 'react-router';
 import Home from '../home/home.jsx';
 import LeaveApplication from '../leaveApplication/leaveApplication.jsx';
 import BusinesstripCreate from '../businesstripApplication/businesstripCreate.jsx';

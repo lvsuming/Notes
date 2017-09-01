@@ -24,9 +24,6 @@ class Article extends React.Component{
     }
 }
 class RadioSwitch extends React.Component{
-    constructor(props){
-        super(props);
-    }
     radioSwitch(){
         let data = this.props.data;
         data.isEmergency = (!data.isEmergency || data.isEmergency==='false') ? true : false;
@@ -41,9 +38,6 @@ class RadioSwitch extends React.Component{
     }
 }
 class BusinesstripDetails extends React.Component{
-    constructor(props){
-        super(props);
-    }
     render(){
         let self=this;
         return (<div className="createDetails">
@@ -70,15 +64,13 @@ class Page extends React.Component{
                 businesstripTranfic : base.isEmptyObject(cacheData) ? [] : cacheData.businesstripTranfic,
                 businesstripHotel : base.isEmptyObject(cacheData) ? [] : cacheData.businesstripHotel
             },
-            timeOutHandler: null,
             isSubmit : false
         }
     }
     saveCacheData() {
         let stateData = this.state.data;
         stateData.timestamp = Date.now();
-        clearTimeout(this.state.timeOutHandler);
-        this.state.timeOutHandler = setTimeout(() => {
+        setTimeout(() => {
             sessionStorage.cacheData = JSON.stringify(stateData);
         },500);
         if(!this.checkForm(false)) return;
@@ -130,7 +122,6 @@ class Page extends React.Component{
     }
     submitForm(){
         if(!this.checkForm(true)) return;
-        let dataSubmit = {};
     }
     componentDidMount(){
         this.bindTravellerDept();

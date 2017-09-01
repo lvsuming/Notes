@@ -1,0 +1,29 @@
+.btn-update{
+  padding: 4px 0;
+  line-height: 1;
+  width: 1rem;
+  text-align: right;
+  background: url(./images/icon-unload.png)
+}
+.upload-list-inline{
+  max-width: calc(100% - 216px);
+
+  .ant-upload-select{
+    float:right;
+  }
+  .ant-upload-list{
+    width: 100%;
+    clear: both;
+  }
+  .ant-upload-list-item {
+    float: left;
+    width: 66px;
+    margin-right: 8px;
+  }
+  .ant-upload-animate-enter {
+    animation-name: uploadAnimateInlineIn;
+  }
+  .ant-upload-animate-leave {
+    animation-name: uploadAnimateInlineOut;
+  }
+}

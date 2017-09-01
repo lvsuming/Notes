@@ -1,9 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import base,{$} from '../../components/base';
-import common from '../../components/common';
 import Row from '../../components/base/row.jsx';
-import { DatePicker, Affix, Form  } from 'antd';
+import { DatePicker, Affix  } from 'antd';
 import 'antd/lib/date-picker/style/index.css';
 import 'antd/lib/affix/style/index.css';
 import moment from 'moment';
@@ -34,9 +32,6 @@ const hotelReserveType = [
     {"value":"3","label":"自行预定"}
 ];
 class Article extends React.Component{
-    constructor(props){
-        super(props);
-    }
     componentDidMount(){
     }
     changeInTime(date,dateString){
@@ -116,6 +111,8 @@ class Article extends React.Component{
                         this.props.setRootState(data);
                     }
                 });
+                break;
+            default :
                 break;
         }
     }
@@ -209,9 +206,6 @@ Article.propTypes = {
     data: PropTypes.object || null,
 };
 class Articles extends React.Component{
-    constructor(props){
-        super(props);
-    }
     render(){
         let self=this;
         return (<div>
@@ -312,7 +306,7 @@ class Page extends React.Component{
             <WingBlank size="lg">
                 <Button className="btn" onClick={this.addJourney.bind(this)}>+增加行程单</Button>
             </WingBlank>
-            <Affix offsetBottom={5+'rem'}>
+            <Affix offsetBottom={10}>
                 <WingBlank size="lg">
                     {
                         this.state.isSubmit

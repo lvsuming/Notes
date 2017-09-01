@@ -1,10 +1,9 @@
-import ReactDom from 'react-dom';
 	function getClass(dom,string) {
 		return dom.getElementsByClassName(string);
 	}
 
 	//构造器
-	var MobileSelect = function (config) {
+	let MobileSelect = function (config) {
 		this.mobileSelect;
 		this.wheelsData = config.wheels;
 	    this.jsonType =  false;
@@ -29,7 +28,7 @@ import ReactDom from 'react-dom';
 	MobileSelect.prototype = {
 		constructor: MobileSelect,
 		init: function(config){
-			var _this = this; 
+			let _this = this;
 
 			_this.trigger = document.querySelector(config.trigger);
 		    _this.wheel = getClass(_this.mobileSelect,'wheel');   //wheel 数组
@@ -55,7 +54,7 @@ import ReactDom from 'react-dom';
 
 			//定位 初始位置
 			if(_this.initPosition.length === 0){
-				for(var i=0; i<_this.slider.length; i++){
+				for(let i=0; i<_this.slider.length; i++){
 					_this.initPosition.push(0);
 				}
 			}
@@ -70,8 +69,8 @@ import ReactDom from 'react-dom';
 
 		    _this.ensureBtn.addEventListener('click',function(){
 		    	_this.mobileSelect.classList.remove('mobileSelect-show');
-			    var tempValue ='';
-		    	for(var i=0; i<_this.wheel.length; i++){
+			    let tempValue ='';
+		    	for(let i=0; i<_this.wheel.length; i++){
 		    		i===_this.wheel.length-1 ? tempValue += _this.getValue(i) : tempValue += _this.getValue(i)+' ';
 		    	}
 		    	_this.trigger.innerHTML = tempValue;
@@ -92,13 +91,13 @@ import ReactDom from 'react-dom';
 		},
 
 		setTitle: function(string){
-			var _this = this;
+			let _this = this;
 			_this.titleText = string;
 			_this.mobileSelect.querySelector('.title').innerHTML = _this.titleText;
 		},
 
 		renderWheels: function(wheelsData){
-			var _this = this;
+			let _this = this;
 			_this.mobileSelect = document.createElement("div");
 			_this.mobileSelect.className = "mobileSelect";
 			_this.mobileSelect.innerHTML = 
@@ -124,15 +123,15 @@ import ReactDom from 'react-dom';
 
 			//根据数据长度来渲染
 
-			var tempHTML='';
-			for(var i=0; i<wheelsData.length; i++){ //列
+			let tempHTML='';
+			for(let i=0; i<wheelsData.length; i++){ //列
 				tempHTML += '<div class="wheel"><ul class="selectContainer">';
 				if(_this.jsonType){
-					for(var j=0; j<wheelsData[i].data.length; j++){ //行
+					for(let j=0; j<wheelsData[i].data.length; j++){ //行
 						tempHTML += '<li data-id="'+(wheelsData[i].data[j].id||wheelsData[i].data[j].fdId)+'">'+(wheelsData[i].data[j].value||wheelsData[i].data[j].fdName)+'</li>';
 					}
 				}else{
-					for(var j=0; j<wheelsData[i].data.length; j++){ //行
+					for(let j=0; j<wheelsData[i].data.length; j++){ //行
 						tempHTML += '<li>'+wheelsData[i].data[j]+'</li>';
 					}
 				}
@@ -142,8 +141,8 @@ import ReactDom from 'react-dom';
 		},
 
 		addListenerAll: function(){
-			var _this = this;
-			for(var i=0; i<_this.slider.length; i++){
+			let _this = this;
+			for(let i=0; i<_this.slider.length; i++){
 				//手势监听
 				(function (i) {
 					_this.addListenerWheel(_this.wheel[i], i);
@@ -153,7 +152,7 @@ import ReactDom from 'react-dom';
 		},
 
 		addListenerWheel: function(theWheel, index){
-			var _this = this;
+			let _this = this;
 			theWheel.addEventListener('touchstart', function (event) {
 				_this.touch(event, this.firstChild, index);
 			},false);
@@ -177,9 +176,9 @@ import ReactDom from 'react-dom';
 		},
 
 		addListenerLi:function(sliderIndex){
-			var _this = this;
-			var curWheelLi = _this.slider[sliderIndex].getElementsByTagName('li');
-			for(var j=0; j<curWheelLi.length;j++){
+			let _this = this;
+			let curWheelLi = _this.slider[sliderIndex].getElementsByTagName('li');
+			for(let j=0; j<curWheelLi.length;j++){
 				(function (j) {
 					curWheelLi[j].addEventListener('click',function(){
 						_this.singleClick(this, j, sliderIndex);
@@ -189,7 +188,7 @@ import ReactDom from 'react-dom';
 		},
 
 		checkDataType: function(){ 
-			var _this = this;
+			let _this = this;
 			if(typeof(_this.wheelsData[0].data[0])==='object'){
 				_this.jsonType = true;
 				_this.jsonData = _this.wheelsData[0].data;
@@ -197,10 +196,10 @@ import ReactDom from 'react-dom';
 		},
 
 		checkCascade: function(){
-			var _this = this;
+			let _this = this;
 			if(_this.jsonType){ 
-				var node = _this.wheelsData[0].data;
-				for(var i=0; i<node.length; i++){
+				let node = _this.wheelsData[0].data;
+				for(let i=0; i<node.length; i++){
 					if('childs' in node[i] && node[i].childs.length > 0){
 						_this.cascade = true;
 						break;
@@ -212,7 +211,7 @@ import ReactDom from 'react-dom';
 		},
 
 		initCascade: function(){
-			var _this = this;
+			let _this = this;
 			_this.displayJson.push(_this.generateArrData(_this.jsonData));
 			_this.checkArrDeep(_this.jsonData[0]);
 			//console.log('将要显示的json:'); 
@@ -221,8 +220,8 @@ import ReactDom from 'react-dom';
 		},
 
 		generateArrData: function (targetArr) {
-			var tempArr = [];
-			for(var i=0; i<targetArr.length; i++){
+			let tempArr = [];
+			for(let i=0; i<targetArr.length; i++){
 				tempArr.push({
 					"id": targetArr[i].id || targetArr[i].fdId,
 					"value": targetArr[i].value || targetArr[i].fdName
@@ -232,7 +231,7 @@ import ReactDom from 'react-dom';
 		},
 
 		checkArrDeep: function (parent) { //检测子节点深度  修改 displayJson
-			var _this = this;
+            let _this = this;
 			if (parent && 'childs' in parent && parent.childs.length > 0) {
 				_this.displayJson.push(_this.generateArrData(parent.childs)) ; //生成子节点数组
 				_this.checkArrDeep(parent.childs[0]);//检测下一个子节点
@@ -240,13 +239,13 @@ import ReactDom from 'react-dom';
 		},
 
 		checkRange: function(index, posIndexArr){
-			var _this = this;
-			var deleteNum = _this.displayJson.length-1-index;
-			for(var i=0; i<deleteNum; i++){
+            let _this = this;
+            let deleteNum = _this.displayJson.length-1-index;
+			for(let i=0; i<deleteNum; i++){
 				_this.displayJson.pop(); //修改 displayJson
 			}
-			var resultNode;
-			for (var i = 0; i <= index; i++){
+            let resultNode;
+			for (let i = 0; i <= index; i++){
 				if (i === 0)
 					resultNode = _this.jsonData[posIndexArr[0]];
 				else {
@@ -261,51 +260,51 @@ import ReactDom from 'react-dom';
 		},
 
 		resetPostion: function(index, posIndexArr){
-			var _this = this;
-			var tempPosArr = posIndexArr;
-			var tempCount;
+            let _this = this;
+            let tempPosArr = posIndexArr;
+            let tempCount;
 			if(_this.slider.length > posIndexArr.length){ 
 				tempCount = _this.slider.length - posIndexArr.length;
-				for(var i=0; i<tempCount; i++){  
+				for(let i=0; i<tempCount; i++){
 					tempPosArr.push(0);
 				}
 			}else if(_this.slider.length < posIndexArr.length){
 				tempCount = posIndexArr.length - _this.slider.length;
-				for(var i=0; i<tempCount; i++){
+				for(let i=0; i<tempCount; i++){
 					tempPosArr.pop();
 				}	
 			}
-			for(var i=index+1; i< tempPosArr.length; i++){
+			for(let i=index+1; i< tempPosArr.length; i++){
 				tempPosArr[i] = 0;
 			} 
 			return tempPosArr;
 		},
 
 		updateWheels: function(){
-			var _this = this;
+            let _this = this;
 			//删除多余的wheel
 			if(_this.wheel.length > _this.displayJson.length){
-				var count = _this.wheel.length - _this.displayJson.length;
-				for(var i=0; i<count; i++){
+                let count = _this.wheel.length - _this.displayJson.length;
+				for(let i=0; i<count; i++){
 					_this.wheels.removeChild(_this.wheel[_this.wheel.length-1]);
 				}
 			}
 
-			for(var i=0; i<_this.displayJson.length; i++){ //列
+			for(let i=0; i<_this.displayJson.length; i++){ //列
 				(function (i) {
-					var tempHTML='';
+                    let tempHTML='';
 					if(_this.wheel[i]){
 						//console.log('插入Li');
-						for(var j=0; j<_this.displayJson[i].length; j++){ //行
+						for(let j=0; j<_this.displayJson[i].length; j++){ //行
 							tempHTML += '<li data-id="'+(_this.displayJson[i][j].id||_this.displayJson[i][j].fdId)+'">'+(_this.displayJson[i][j].value||_this.displayJson[i][j].fdName)+'</li>';
 						}
 						_this.slider[i].innerHTML = tempHTML;
 
 					}else{
-						var tempWheel = document.createElement("div");
+                        let tempWheel = document.createElement("div");
 						tempWheel.className = "wheel";
 						tempHTML = '<ul class="selectContainer">';
-						for(var j=0; j<_this.displayJson[i].length; j++){ //行
+						for(let j=0; j<_this.displayJson[i].length; j++){ //行
 							tempHTML += '<li data-id="'+(_this.displayJson[i][j].id||_this.displayJson[i][j].fdId)+'">'+(_this.displayJson[i][j].value||_this.displayJson[i][j].fdName)+'</li>';
 						}
 						tempHTML += '</ul>';
@@ -320,9 +319,9 @@ import ReactDom from 'react-dom';
 		},
 
 		updateWheel: function(sliderIndex, data){
-			var _this = this;
-			var tempHTML='';
-			for(var j=0; j<data.length; j++){
+            let _this = this;
+            let tempHTML='';
+			for(let j=0; j<data.length; j++){
 				tempHTML += '<li>'+data[j]+'</li>'
 			}
 			_this.slider[sliderIndex].innerHTML = tempHTML;
@@ -330,9 +329,9 @@ import ReactDom from 'react-dom';
 		},
 
 		fixRowStyle: function(){
-			var _this = this;
-			var width = (100/_this.wheel.length).toFixed(2);
-			for(var i=0; i<_this.wheel.length; i++){
+            let _this = this;
+            let width = (100/_this.wheel.length).toFixed(2);
+			for(let i=0; i<_this.wheel.length; i++){
 				_this.wheel[i].style.width = width+'%';
 			}
 		},
@@ -342,29 +341,29 @@ import ReactDom from 'react-dom';
 	    },
 
 	    getIndexArr: function(){
-	    	var _this = this;
-	    	var temp = [];
-	    	for(var i=0; i<_this.curDistance.length; i++){
+            let _this = this;
+            let temp = [];
+	    	for(let i=0; i<_this.curDistance.length; i++){
 	    		temp.push(_this.getIndex(_this.curDistance[i]));
 	    	}
 	    	return temp;
 	    },
 
 	    getJson: function(){
-	    	var _this = this;
-	    	var temp = [];
-	    	var positionArr = _this.getIndexArr();
+            let _this = this;
+            let temp = [];
+            let positionArr = _this.getIndexArr();
 	    	if(_this.cascade){
-		    	for(var i=0; i<_this.wheel.length; i++){
+		    	for(let i=0; i<_this.wheel.length; i++){
 		    		temp.push(_this.displayJson[i][positionArr[i]]);
 		    	}
 	    	}
 	    	else if(_this.jsonType){
-		    	for(var i=0; i<_this.curDistance.length; i++){
+		    	for(let i=0; i<_this.curDistance.length; i++){
 		    		temp.push(_this.wheelsData[i].data[_this.getIndex(_this.curDistance[i])]);
 		    	}
 	    	}else{
-		    	for(var i=0; i<_this.curDistance.length; i++){
+		    	for(let i=0; i<_this.curDistance.length; i++){
 		    		temp.push(_this.getValue(i));
 		    	}
 	    	}
@@ -376,9 +375,9 @@ import ReactDom from 'react-dom';
 	    },
 
 	    setCurDistance: function(indexArr){
-	    	var _this = this;
-	    	var temp = [];
-	    	for(var i=0; i<_this.slider.length; i++){
+            let _this = this;
+            let temp = [];
+	    	for(let i=0; i<_this.slider.length; i++){
 	    		temp.push(_this.calcDistance(indexArr[i]));
 	    		_this.movePosition(_this.slider[i],temp[i]);
 	    	}
@@ -400,21 +399,21 @@ import ReactDom from 'react-dom';
 	    },
 
 	    updateCurDistance: function(theSlider, index){
-	        this.curDistance[index] = parseInt(theSlider.style.transform.split(',')[1]);
+	        this.curDistance[index] = parseInt(theSlider.style.transform.split(',')[1],10);
 	    },
 
 	    getDistance:function(theSlider){
-	    	return parseInt(theSlider.style.transform.split(',')[1]);
+	    	return parseInt(theSlider.style.transform.split(',')[1],10);
 	    },
 
 	    getValue: function(sliderIndex){
-	    	var _this = this;
-	    	var index = _this.getIndex(_this.curDistance[sliderIndex]);
+            let _this = this;
+            let index = _this.getIndex(_this.curDistance[sliderIndex]);
 	    	return _this.slider[sliderIndex].getElementsByTagName('li')[index].innerHTML;
 	    },
 
 	    touch: function(event, theSlider, index){
-	    	var _this = this;
+            let _this = this;
 	    	event = event || window.event;
 	    	switch(event.type){
 	    		case "touchstart":
@@ -452,7 +451,7 @@ import ReactDom from 'react-dom';
 			        _this.transitionEnd(_this.getIndexArr(),_this.getJson());
 
 			        if(_this.cascade){
-				        var tempPosArr = _this.getIndexArr();
+				        let tempPosArr = _this.getIndexArr();
 				        tempPosArr[index] = _this.getIndex(_this.curDistance[index]);
 			        	_this.checkRange(index, tempPosArr);
 			        }
@@ -469,11 +468,14 @@ import ReactDom from 'react-dom';
 			        _this.movePosition(theSlider, _this.curDistance[index]);
 			        _this.oldMoveY = _this.moveY;
 	    			break;
+
+				default :
+					break;
 	    	}
 	    },
 
 	    dragClick: function(event, theSlider, index){
-	    	var _this = this;
+	    	let _this = this;
 	    	event = event || window.event;
 	    	switch(event.type){
 	    		case "mousedown":
@@ -511,7 +513,7 @@ import ReactDom from 'react-dom';
 			        _this.clickStatus = false;
 			        _this.transitionEnd(_this.getIndexArr(),_this.getJson());
 			        if(_this.cascade){
-				        var tempPosArr = _this.getIndexArr();
+				        let tempPosArr = _this.getIndexArr();
 				        tempPosArr[index] = _this.getIndex(_this.curDistance[index]);
 			        	_this.checkRange(index, tempPosArr);
 			        }
@@ -529,13 +531,15 @@ import ReactDom from 'react-dom';
 				        _this.oldMoveY = _this.moveY;
 			        }
 	    			break;
+				default:
+					break;
 	    	}
 	    },
 
 	    singleClick: function(theLi, index, sliderIndex){
-	    	var _this = this;
+	    	let _this = this;
 	        if(_this.cascade){
-		        var tempPosArr = _this.getIndexArr();
+		        let tempPosArr = _this.getIndexArr();
 		        tempPosArr[sliderIndex] = index;
 	        	_this.checkRange(sliderIndex, tempPosArr);
 
